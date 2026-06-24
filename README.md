@@ -4,7 +4,8 @@ Static website mockup for Stryde Accounting.
 
 ## Preview
 
-Open `index.html` locally or publish the repository with GitHub Pages.
+- Vercel: https://stryde-accounting-website.vercel.app
+- GitHub Pages: https://matt-xgrow.github.io/stryde-accounting-website/
 
 ## Brand
 
