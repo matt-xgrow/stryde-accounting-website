@@ -1,0 +1,996 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Stryde Accounting | Chartered Accountants & Tax Agents</title>
+    <meta
+      name="description"
+      content="Stryde Accounting helps Australian businesses and individuals with tax, compliance, bookkeeping, payroll and clear advisory support."
+    />
+    <link rel="icon" type="image/png" href="assets/mark.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Funnel+Sans:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --navy: #07173f;
+        --green: #1be088;
+        --white: #ffffff;
+        --ink: #10213b;
+        --muted: #5c677c;
+        --line: #dce4ee;
+        --soft: #f5f8fb;
+        --soft-green: #e9fff5;
+        --paper: #fffef9;
+        --amber: #ffcf70;
+        --shadow: 0 24px 70px rgba(7, 23, 63, 0.14);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: var(--white);
+        font-family: "Poppins", Arial, sans-serif;
+        line-height: 1.55;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .site-header {
+        position: fixed;
+        z-index: 20;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.94);
+        border-bottom: 1px solid rgba(220, 228, 238, 0.85);
+        backdrop-filter: blur(16px);
+      }
+
+      .nav {
+        width: min(1160px, calc(100% - 40px));
+        min-height: 76px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .brand {
+        width: 174px;
+        flex: 0 0 auto;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 26px;
+        color: #2c3851;
+        font-size: 0.92rem;
+        font-weight: 600;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+      }
+
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .button {
+        min-height: 46px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 0 18px;
+        border: 1px solid transparent;
+        border-radius: 8px;
+        font-family: "Funnel Sans", "Poppins", Arial, sans-serif;
+        font-weight: 800;
+        text-decoration: none;
+        cursor: pointer;
+        transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+      }
+
+      .button:hover {
+        transform: translateY(-1px);
+      }
+
+      .button-primary {
+        color: var(--navy);
+        background: var(--green);
+        box-shadow: 0 14px 30px rgba(27, 224, 136, 0.27);
+      }
+
+      .button-secondary {
+        color: var(--white);
+        border-color: rgba(255, 255, 255, 0.72);
+        background: rgba(255, 255, 255, 0.08);
+      }
+
+      .button-outline {
+        color: var(--navy);
+        border-color: rgba(7, 23, 63, 0.18);
+        background: var(--white);
+      }
+
+      .hero {
+        min-height: clamp(520px, calc(100vh - 120px), 620px);
+        margin-top: 76px;
+        color: var(--white);
+        background:
+          linear-gradient(90deg, rgba(7, 23, 63, 0.96) 0%, rgba(7, 23, 63, 0.84) 46%, rgba(7, 23, 63, 0.42) 100%),
+          url("assets/accounting-desk.jpg") center right / cover no-repeat;
+        display: flex;
+        align-items: center;
+      }
+
+      .hero-inner,
+      .section-inner {
+        width: min(1160px, calc(100% - 40px));
+        margin: 0 auto;
+      }
+
+      .hero-content {
+        width: min(680px, 100%);
+        padding: 36px 0 30px;
+      }
+
+      .eyebrow {
+        margin: 0 0 12px;
+        color: var(--green);
+        font-family: "Funnel Sans", "Poppins", Arial, sans-serif;
+        font-size: 0.88rem;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        font-family: "Funnel Sans", "Poppins", Arial, sans-serif;
+        line-height: 1.05;
+      }
+
+      h1 {
+        max-width: 650px;
+        font-size: clamp(2.35rem, 5vw, 4.1rem);
+        font-weight: 800;
+      }
+
+      h2 {
+        color: var(--navy);
+        font-size: clamp(2rem, 4vw, 3.55rem);
+        font-weight: 800;
+      }
+
+      h3 {
+        color: var(--navy);
+        font-size: 1.24rem;
+        font-weight: 800;
+      }
+
+      .hero-copy {
+        max-width: 590px;
+        margin: 18px 0 0;
+        color: rgba(255, 255, 255, 0.88);
+        font-size: clamp(1rem, 1.7vw, 1.18rem);
+      }
+
+      .hero-actions {
+        margin-top: 26px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .hero-points {
+        margin: 18px 0 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .hero-points li {
+        min-height: 40px;
+        display: inline-flex;
+        align-items: center;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        padding: 8px 12px;
+        color: rgba(255, 255, 255, 0.9);
+        background: rgba(255, 255, 255, 0.08);
+        font-size: 0.88rem;
+        font-weight: 700;
+      }
+
+      .trust-strip {
+        background: var(--white);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .trust-grid {
+        width: min(1160px, calc(100% - 40px));
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+      }
+
+      .trust-item {
+        min-height: 98px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 20px 24px;
+        border-left: 1px solid var(--line);
+      }
+
+      .trust-item:last-child {
+        border-right: 1px solid var(--line);
+      }
+
+      .trust-label {
+        color: var(--muted);
+        font-size: 0.78rem;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      .trust-value {
+        margin-top: 4px;
+        color: var(--navy);
+        font-family: "Funnel Sans", "Poppins", Arial, sans-serif;
+        font-size: 1.08rem;
+        font-weight: 800;
+      }
+
+      section {
+        padding: 88px 0;
+      }
+
+      .section-head {
+        max-width: 760px;
+        margin-bottom: 38px;
+      }
+
+      .section-head p {
+        margin: 18px 0 0;
+        color: var(--muted);
+        font-size: 1.03rem;
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+      }
+
+      .service-card,
+      .plain-card,
+      .faq-item,
+      .contact-panel {
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--white);
+      }
+
+      .service-card {
+        min-height: 230px;
+        padding: 24px;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .service-card:before {
+        content: "";
+        width: 34px;
+        height: 34px;
+        position: absolute;
+        top: 22px;
+        right: 22px;
+        border-top: 11px solid var(--green);
+        border-right: 11px solid var(--green);
+      }
+
+      .service-card p,
+      .plain-card p,
+      .faq-item p {
+        margin: 14px 0 0;
+        color: var(--muted);
+      }
+
+      .service-list {
+        margin: 20px 0 0;
+        padding: 0;
+        list-style: none;
+        color: var(--ink);
+        font-size: 0.94rem;
+        font-weight: 600;
+      }
+
+      .service-list li + li {
+        margin-top: 8px;
+      }
+
+      .service-list li:before,
+      .check-list li:before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        margin-right: 10px;
+        display: inline-block;
+        background: var(--green);
+      }
+
+      .split {
+        display: grid;
+        grid-template-columns: 1fr 0.86fr;
+        gap: 46px;
+        align-items: center;
+      }
+
+      .image-frame {
+        border-radius: 8px;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        box-shadow: var(--shadow);
+      }
+
+      .image-frame img {
+        width: 100%;
+        aspect-ratio: 1.35;
+        object-fit: cover;
+      }
+
+      .check-list {
+        margin: 26px 0 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 14px;
+      }
+
+      .check-list li {
+        color: #26334c;
+        font-weight: 600;
+      }
+
+      .soft-section {
+        background: var(--soft);
+      }
+
+      .accountant-layout {
+        display: grid;
+        grid-template-columns: 0.8fr 1fr;
+        gap: 20px;
+        align-items: stretch;
+      }
+
+      .accountant-card {
+        padding: 28px;
+        color: var(--white);
+        border-radius: 8px;
+        background: var(--navy);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .accountant-card:after {
+        content: "";
+        width: 90px;
+        height: 90px;
+        position: absolute;
+        top: 24px;
+        right: 24px;
+        border-top: 28px solid var(--green);
+        border-right: 28px solid var(--green);
+      }
+
+      .accountant-card h3 {
+        color: var(--white);
+        font-size: 2rem;
+      }
+
+      .accountant-card p {
+        max-width: 440px;
+        margin: 14px 0 0;
+        color: rgba(255, 255, 255, 0.76);
+      }
+
+      .credential-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+      }
+
+      .plain-card {
+        padding: 22px;
+      }
+
+      .plain-card strong {
+        display: block;
+        color: var(--navy);
+        font-family: "Funnel Sans", "Poppins", Arial, sans-serif;
+        font-size: 1.1rem;
+      }
+
+      .process-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+      }
+
+      .step {
+        padding: 24px;
+        border-top: 4px solid var(--green);
+        background: var(--paper);
+      }
+
+      .step-number {
+        color: var(--green);
+        font-family: "Funnel Sans", "Poppins", Arial, sans-serif;
+        font-size: 2.5rem;
+        font-weight: 800;
+        line-height: 1;
+      }
+
+      .step h3 {
+        margin-top: 18px;
+      }
+
+      .cta-band {
+        padding: 58px 0;
+        color: var(--white);
+        background: var(--navy);
+      }
+
+      .cta-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 28px;
+      }
+
+      .cta-content h2 {
+        color: var(--white);
+        max-width: 680px;
+      }
+
+      .cta-content p {
+        max-width: 620px;
+        margin: 14px 0 0;
+        color: rgba(255, 255, 255, 0.75);
+      }
+
+      .faq-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+
+      .faq-item {
+        padding: 24px;
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: 0.82fr 1fr;
+        gap: 24px;
+        align-items: start;
+      }
+
+      .contact-panel {
+        padding: 28px;
+      }
+
+      .contact-list {
+        margin: 22px 0 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 14px;
+      }
+
+      .contact-list a {
+        color: var(--navy);
+        font-weight: 800;
+        text-decoration: none;
+      }
+
+      .contact-form {
+        display: grid;
+        gap: 14px;
+      }
+
+      label {
+        display: grid;
+        gap: 8px;
+        color: var(--navy);
+        font-size: 0.86rem;
+        font-weight: 800;
+      }
+
+      input,
+      textarea,
+      select {
+        width: 100%;
+        min-height: 48px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 12px 13px;
+        color: var(--ink);
+        background: var(--white);
+        font: inherit;
+      }
+
+      textarea {
+        min-height: 130px;
+        resize: vertical;
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+      }
+
+      .site-footer {
+        padding: 34px 0;
+        color: rgba(255, 255, 255, 0.72);
+        background: #04102f;
+      }
+
+      .footer-inner {
+        width: min(1160px, calc(100% - 40px));
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        gap: 22px;
+      }
+
+      .footer-inner strong {
+        color: var(--white);
+      }
+
+      @media (max-width: 940px) {
+        .nav {
+          min-height: 70px;
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .brand {
+          width: 156px;
+        }
+
+        .hero {
+          min-height: auto;
+          margin-top: 70px;
+          background:
+            linear-gradient(90deg, rgba(7, 23, 63, 0.97) 0%, rgba(7, 23, 63, 0.86) 72%, rgba(7, 23, 63, 0.66) 100%),
+            url("assets/accounting-desk.jpg") center right / cover no-repeat;
+        }
+
+        .hero-content {
+          padding: 68px 0 52px;
+        }
+
+        .trust-grid,
+        .services-grid,
+        .process-grid,
+        .faq-grid,
+        .split,
+        .accountant-layout,
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .trust-item,
+        .trust-item:last-child {
+          border-right: 1px solid var(--line);
+          border-bottom: 1px solid var(--line);
+        }
+
+        .credential-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .cta-content,
+        .footer-inner {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+      }
+
+      @media (max-width: 620px) {
+        .nav,
+        .hero-inner,
+        .section-inner,
+        .trust-grid,
+        .footer-inner {
+          width: min(100% - 28px, 1160px);
+        }
+
+        .nav-actions .button-outline {
+          display: none;
+        }
+
+        .button {
+          width: 100%;
+        }
+
+        .hero-actions {
+          display: grid;
+        }
+
+        .hero-points {
+          display: grid;
+          grid-template-columns: 1fr;
+        }
+
+        section {
+          padding: 64px 0;
+        }
+
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav" aria-label="Primary navigation">
+        <a class="brand" href="#top" aria-label="Stryde Accounting home">
+          <img src="assets/logo-full.png" alt="Stryde Accounting" />
+        </a>
+        <div class="nav-links">
+          <a href="#services">Services</a>
+          <a href="#process">Process</a>
+          <a href="#accountant">Accountant</a>
+          <a href="#contact">Contact</a>
+        </div>
+        <div class="nav-actions">
+          <a class="button button-outline" href="tel:+61449655904">Call now</a>
+          <a class="button button-primary" href="mailto:connect@strydeaccounting.com.au?subject=Book%20a%20consultation%20with%20Stryde%20Accounting">Book a consultation</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-inner">
+          <div class="hero-content">
+            <p class="eyebrow">Chartered Accountants &amp; Tax Agents</p>
+            <h1 id="hero-title">Clear accounting for confident next steps.</h1>
+            <p class="hero-copy">
+              Stryde Accounting helps Australian businesses and individuals stay compliant, understand their numbers and make confident financial decisions without the jargon.
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="mailto:connect@strydeaccounting.com.au?subject=Book%20a%20free%20clarity%20call">Book a free clarity call</a>
+              <a class="button button-secondary" href="tel:+61449655904">Call +61 449 655 904</a>
+            </div>
+            <ul class="hero-points" aria-label="Stryde Accounting credentials">
+              <li>Registered Tax Agent No. 26363623</li>
+              <li>ABN 50 697 914 739</li>
+              <li>Sydney based, Australia wide</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <div class="trust-strip" aria-label="Trust details">
+        <div class="trust-grid">
+          <div class="trust-item">
+            <span class="trust-label">Principal accountant</span>
+            <span class="trust-value">Tejas Dhami</span>
+          </div>
+          <div class="trust-item">
+            <span class="trust-label">Registration</span>
+            <span class="trust-value">Tax Agent 26363623</span>
+          </div>
+          <div class="trust-item">
+            <span class="trust-label">Business identity</span>
+            <span class="trust-value">ABN 50 697 914 739</span>
+          </div>
+          <div class="trust-item">
+            <span class="trust-label">Contact</span>
+            <span class="trust-value">connect@strydeaccounting.com.au</span>
+          </div>
+        </div>
+      </div>
+
+      <section id="services">
+        <div class="section-inner">
+          <div class="section-head">
+            <p class="eyebrow">What we do</p>
+            <h2>Practical accounting support for every stage of business.</h2>
+            <p>
+              Choose the help you need now, then grow into deeper advisory support as your business becomes more complex.
+            </p>
+          </div>
+
+          <div class="services-grid">
+            <article class="service-card">
+              <h3>Tax returns &amp; compliance</h3>
+              <p>Timely, accurate tax work for individuals, sole traders, companies and trusts.</p>
+              <ul class="service-list">
+                <li>Income tax returns</li>
+                <li>Tax planning</li>
+                <li>ATO correspondence</li>
+              </ul>
+            </article>
+
+            <article class="service-card">
+              <h3>BAS, GST &amp; bookkeeping</h3>
+              <p>Clean records, reliable lodgements and less last-minute stress each quarter.</p>
+              <ul class="service-list">
+                <li>BAS preparation</li>
+                <li>GST reporting</li>
+                <li>Monthly bookkeeping</li>
+              </ul>
+            </article>
+
+            <article class="service-card">
+              <h3>Business accounting</h3>
+              <p>Clear financial reporting so you can see what is working and where to improve.</p>
+              <ul class="service-list">
+                <li>Management reports</li>
+                <li>Cash flow clarity</li>
+                <li>Year-end accounts</li>
+              </ul>
+            </article>
+
+            <article class="service-card">
+              <h3>Payroll &amp; super</h3>
+              <p>Practical help to keep your team paid correctly and your obligations on track.</p>
+              <ul class="service-list">
+                <li>Single Touch Payroll</li>
+                <li>Superannuation checks</li>
+                <li>Employee setup</li>
+              </ul>
+            </article>
+
+            <article class="service-card">
+              <h3>Xero setup &amp; cleanup</h3>
+              <p>Simple cloud accounting systems that help you keep your numbers current.</p>
+              <ul class="service-list">
+                <li>Xero setup</li>
+                <li>Chart of accounts</li>
+                <li>Data cleanup</li>
+              </ul>
+            </article>
+
+            <article class="service-card">
+              <h3>Advisory &amp; planning</h3>
+              <p>Plain-English guidance for decisions around structure, growth and profit.</p>
+              <ul class="service-list">
+                <li>Business structure</li>
+                <li>Profit improvement</li>
+                <li>Decision support</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="soft-section">
+        <div class="section-inner split">
+          <div>
+            <p class="eyebrow">Why Stryde</p>
+            <h2>Friendly advice, sharp compliance and no unnecessary complication.</h2>
+            <p>
+              Accounting should make your business feel easier to run. Stryde keeps communication clear, deadlines visible and recommendations practical.
+            </p>
+            <ul class="check-list">
+              <li>Clear explanations before decisions, lodgements or deadlines.</li>
+              <li>Responsive support for small businesses, growing teams and individuals.</li>
+              <li>A structured approach to tax, records, reporting and next steps.</li>
+            </ul>
+          </div>
+          <div class="image-frame">
+            <img src="assets/business-card-mockup.jpg" alt="Stryde Accounting branded business cards" />
+          </div>
+        </div>
+      </section>
+
+      <section id="accountant">
+        <div class="section-inner">
+          <div class="section-head">
+            <p class="eyebrow">Your accountant</p>
+            <h2>Registered expertise, delivered in a calm and approachable way.</h2>
+          </div>
+
+          <div class="accountant-layout">
+            <article class="accountant-card">
+              <h3>Tejas Dhami</h3>
+              <p>Director &amp; Principal Accountant at Stryde Accounting.</p>
+              <p>CA (ANZ), CA (ICAI), Registered Tax Agent.</p>
+            </article>
+            <div class="credential-grid">
+              <article class="plain-card">
+                <strong>Registered Tax Agent</strong>
+                <p>Tax Agent Registration number: 26363623.</p>
+              </article>
+              <article class="plain-card">
+                <strong>Australian Business Number</strong>
+                <p>ABN: 50 697 914 739.</p>
+              </article>
+              <article class="plain-card">
+                <strong>Location</strong>
+                <p>Based in Sydney, supporting clients across Australia.</p>
+              </article>
+              <article class="plain-card">
+                <strong>Best first step</strong>
+                <p>Book a short clarity call so we can understand what you need and recommend the right next move.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="process" class="soft-section">
+        <div class="section-inner">
+          <div class="section-head">
+            <p class="eyebrow">How it works</p>
+            <h2>A simple process from first call to confident lodgement.</h2>
+          </div>
+          <div class="process-grid">
+            <article class="plain-card step">
+              <div class="step-number">01</div>
+              <h3>Book a call</h3>
+              <p>Tell us what is happening and what you want handled first.</p>
+            </article>
+            <article class="plain-card step">
+              <div class="step-number">02</div>
+              <h3>Share documents</h3>
+              <p>We review your details, records and obligations before advising.</p>
+            </article>
+            <article class="plain-card step">
+              <div class="step-number">03</div>
+              <h3>Get clear advice</h3>
+              <p>You receive practical options, transparent next steps and no jargon.</p>
+            </article>
+            <article class="plain-card step">
+              <div class="step-number">04</div>
+              <h3>Move forward</h3>
+              <p>We help you lodge, report, plan and stay ahead of future deadlines.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta-band">
+        <div class="section-inner cta-content">
+          <div>
+            <h2>Ready for accounting that feels clear from day one?</h2>
+            <p>Send a short message and we will come back with the best next step for your tax, bookkeeping or business accounting needs.</p>
+          </div>
+          <a class="button button-primary" href="mailto:connect@strydeaccounting.com.au?subject=I%20would%20like%20to%20work%20with%20Stryde%20Accounting">Start with Stryde</a>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-inner">
+          <div class="section-head">
+            <p class="eyebrow">Common questions</p>
+            <h2>Quick answers before we talk.</h2>
+          </div>
+          <div class="faq-grid">
+            <article class="faq-item">
+              <h3>Do you work with clients outside Sydney?</h3>
+              <p>Yes. Stryde is based in Sydney and can support clients across Australia using online meetings and cloud accounting tools.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Can you help if my records are messy?</h3>
+              <p>Yes. We can review where things stand, identify gaps and create a clear cleanup plan before lodgement or reporting.</p>
+            </article>
+            <article class="faq-item">
+              <h3>Do you support Xero?</h3>
+              <p>Yes. We can help with Xero setup, review, cleanup and practical workflows for ongoing bookkeeping.</p>
+            </article>
+            <article class="faq-item">
+              <h3>What should I send before the first call?</h3>
+              <p>A short summary of what you need is enough. We will ask for specific documents after we understand your situation.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="soft-section">
+        <div class="section-inner contact-grid">
+          <div class="contact-panel">
+            <p class="eyebrow">Contact</p>
+            <h2>Let's make your numbers easier to manage.</h2>
+            <ul class="contact-list">
+              <li>Email: <a href="mailto:connect@strydeaccounting.com.au">connect@strydeaccounting.com.au</a></li>
+              <li>Phone: <a href="tel:+61449655904">+61 449 655 904</a></li>
+              <li>Location: Sydney, Australia</li>
+              <li>ABN: 50 697 914 739</li>
+            </ul>
+          </div>
+
+          <form class="contact-panel contact-form" id="contact-form">
+            <div class="form-row">
+              <label>
+                Name
+                <input name="name" autocomplete="name" required />
+              </label>
+              <label>
+                Email
+                <input name="email" type="email" autocomplete="email" required />
+              </label>
+            </div>
+            <label>
+              What do you need help with?
+              <select name="topic">
+                <option>Tax return or tax planning</option>
+                <option>BAS, GST or bookkeeping</option>
+                <option>Business accounting</option>
+                <option>Payroll or super</option>
+                <option>Xero setup or cleanup</option>
+                <option>General advice</option>
+              </select>
+            </label>
+            <label>
+              Message
+              <textarea name="message" placeholder="Tell us a little about your business or question."></textarea>
+            </label>
+            <button class="button button-primary" type="submit">Send enquiry</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div><strong>Stryde Accounting</strong> - A leap forward.</div>
+        <div>Registered Tax Agent No. 26363623 | ABN 50 697 914 739</div>
+      </div>
+    </footer>
+
+    <script>
+      const form = document.querySelector("#contact-form");
+
+      form.addEventListener("submit", (event) => {
+        event.preventDefault();
+        const data = new FormData(form);
+        const subject = encodeURIComponent("New enquiry from Stryde Accounting website");
+        const body = encodeURIComponent(
+          `Name: ${data.get("name")}\nEmail: ${data.get("email")}\nTopic: ${data.get("topic")}\n\nMessage:\n${data.get("message") || ""}`
+        );
+        window.location.href = `mailto:connect@strydeaccounting.com.au?subject=${subject}&body=${body}`;
+      });
+    </script>
+  </body>
+</html>
