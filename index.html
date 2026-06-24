@@ -210,25 +210,30 @@
       }
 
       .hero-points {
-        margin: 18px 0 0;
+        margin: 22px 0 0;
         padding: 0;
         list-style: none;
         display: flex;
         flex-wrap: wrap;
-        gap: 10px;
+        gap: 10px 18px;
       }
 
       .hero-points li {
-        min-height: 40px;
+        min-height: 24px;
         display: inline-flex;
         align-items: center;
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        border-radius: 8px;
-        padding: 8px 12px;
-        color: rgba(255, 255, 255, 0.9);
-        background: rgba(255, 255, 255, 0.08);
-        font-size: 0.88rem;
-        font-weight: 700;
+        color: rgba(255, 255, 255, 0.74);
+        font-size: 0.86rem;
+        font-weight: 600;
+      }
+
+      .hero-points li:before {
+        content: "";
+        width: 7px;
+        height: 7px;
+        margin-right: 9px;
+        border-radius: 999px;
+        background: var(--green);
       }
 
       .trust-strip {
@@ -389,40 +394,42 @@
 
       .accountant-layout {
         display: grid;
-        grid-template-columns: 0.8fr 1fr;
+        grid-template-columns: 0.92fr 1fr;
         gap: 20px;
         align-items: stretch;
       }
 
-      .accountant-card {
-        padding: 28px;
-        color: var(--white);
-        border-radius: 8px;
-        background: var(--navy);
-        position: relative;
+      .team-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
+      }
+
+      .team-member {
         overflow: hidden;
+        padding: 0;
       }
 
-      .accountant-card:after {
-        content: "";
-        width: 90px;
-        height: 90px;
-        position: absolute;
-        top: 24px;
-        right: 24px;
-        border-top: 28px solid var(--green);
-        border-right: 28px solid var(--green);
+      .team-member img {
+        width: 100%;
+        aspect-ratio: 1;
+        object-fit: cover;
       }
 
-      .accountant-card h3 {
-        color: var(--white);
-        font-size: 2rem;
+      .team-member-body {
+        padding: 22px;
       }
 
-      .accountant-card p {
-        max-width: 440px;
+      .role {
+        margin: 6px 0 0;
+        color: var(--green);
+        font-family: "Funnel Sans", "Poppins", Arial, sans-serif;
+        font-weight: 800;
+      }
+
+      .team-member p:not(.role) {
         margin: 14px 0 0;
-        color: rgba(255, 255, 255, 0.76);
+        color: var(--muted);
       }
 
       .credential-grid {
@@ -609,6 +616,7 @@
         .services-grid,
         .process-grid,
         .faq-grid,
+        .team-grid,
         .split,
         .accountant-layout,
         .contact-grid {
@@ -656,6 +664,7 @@
         .hero-points {
           display: grid;
           grid-template-columns: 1fr;
+          gap: 9px;
         }
 
         section {
@@ -677,12 +686,12 @@
         <div class="nav-links">
           <a href="#services">Services</a>
           <a href="#process">Process</a>
-          <a href="#accountant">Accountant</a>
+          <a href="#accountant">Team</a>
           <a href="#contact">Contact</a>
         </div>
         <div class="nav-actions">
           <a class="button button-outline" href="tel:+61449655904">Call now</a>
-          <a class="button button-primary" href="mailto:connect@strydeaccounting.com.au?subject=Book%20a%20consultation%20with%20Stryde%20Accounting">Book a consultation</a>
+          <a class="button button-primary" href="https://api.leadconnectorhq.com/widget/bookings/strategy-call-stryde" target="_blank" rel="noopener">Book a consultation</a>
         </div>
       </nav>
     </header>
@@ -697,7 +706,7 @@
               Stryde Accounting helps Australian businesses and individuals stay compliant, understand their numbers and make confident financial decisions without the jargon.
             </p>
             <div class="hero-actions">
-              <a class="button button-primary" href="mailto:connect@strydeaccounting.com.au?subject=Book%20a%20free%20clarity%20call">Book a free clarity call</a>
+              <a class="button button-primary" href="https://api.leadconnectorhq.com/widget/bookings/strategy-call-stryde" target="_blank" rel="noopener">Book a free clarity call</a>
               <a class="button button-secondary" href="tel:+61449655904">Call +61 449 655 904</a>
             </div>
             <ul class="hero-points" aria-label="Stryde Accounting credentials">
@@ -827,16 +836,29 @@
       <section id="accountant">
         <div class="section-inner">
           <div class="section-head">
-            <p class="eyebrow">Your accountant</p>
+            <p class="eyebrow">Your team</p>
             <h2>Registered expertise, delivered in a calm and approachable way.</h2>
           </div>
 
           <div class="accountant-layout">
-            <article class="accountant-card">
-              <h3>Tejas Dhami</h3>
-              <p>Director &amp; Principal Accountant at Stryde Accounting.</p>
-              <p>CA (ANZ), CA (ICAI), Registered Tax Agent.</p>
-            </article>
+            <div class="team-grid">
+              <article class="plain-card team-member">
+                <img src="assets/tejas-dhami.jpg" alt="Tejas Dhami" />
+                <div class="team-member-body">
+                  <h3>Tejas Dhami</h3>
+                  <p class="role">Director &amp; Principal Accountant</p>
+                  <p>CA (ANZ), CA (ICAI), Registered Tax Agent.</p>
+                </div>
+              </article>
+              <article class="plain-card team-member">
+                <img src="assets/matt-bessa.jpg" alt="Matt Bessa" />
+                <div class="team-member-body">
+                  <h3>Matt Bessa</h3>
+                  <p class="role">Accounts Manager</p>
+                  <p>Friendly support for client onboarding, account coordination and day-to-day communication.</p>
+                </div>
+              </article>
+            </div>
             <div class="credential-grid">
               <article class="plain-card">
                 <strong>Registered Tax Agent</strong>
@@ -896,7 +918,7 @@
             <h2>Ready for accounting that feels clear from day one?</h2>
             <p>Send a short message and we will come back with the best next step for your tax, bookkeeping or business accounting needs.</p>
           </div>
-          <a class="button button-primary" href="mailto:connect@strydeaccounting.com.au?subject=I%20would%20like%20to%20work%20with%20Stryde%20Accounting">Start with Stryde</a>
+          <a class="button button-primary" href="https://api.leadconnectorhq.com/widget/bookings/strategy-call-stryde" target="_blank" rel="noopener">Start with Stryde</a>
         </div>
       </section>
 
