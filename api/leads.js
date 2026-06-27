@@ -1,6 +1,10 @@
 const GHL_API_BASE = "https://services.leadconnectorhq.com";
 const GHL_API_VERSION = "2021-07-28";
-const REFERRED_BY_OPTIONS = new Set(["", "Tejas Dhami", "Matt", "Bessa", "Other"]);
+const REFERRED_BY_OPTIONS = new Set(["", "Tejas Dhami", "Matt Bessa", "Other"]);
+const LEGACY_REFERRED_BY_VALUES = new Map([
+  ["Matt", "Matt Bessa"],
+  ["Bessa", "Matt Bessa"],
+]);
 
 function getConfig() {
   const required = [
@@ -88,7 +92,9 @@ function parseSubmission(body) {
   const email = cleanString(body.email).toLowerCase();
   const topic = cleanString(body.topic);
   const message = cleanString(body.message);
-  const referredBy = cleanString(body.referredBy);
+  const rawReferredBy = cleanString(body.referredBy);
+  const referredBy =
+    LEGACY_REFERRED_BY_VALUES.get(rawReferredBy) || rawReferredBy;
 
   if (!name) {
     throw new Error("Name is required.");
