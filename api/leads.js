@@ -1,5 +1,6 @@
 const GHL_API_BASE = "https://services.leadconnectorhq.com";
 const GHL_API_VERSION = "2021-07-28";
+const LEAD_SOURCE = "Website";
 const REFERRED_BY_OPTIONS = new Set(["", "Tejas Dhami", "Matt Bessa", "Other"]);
 const LEGACY_REFERRED_BY_VALUES = new Map([
   ["Matt", "Matt Bessa"],
@@ -90,6 +91,7 @@ async function ghlRequest(path, options = {}) {
 function parseSubmission(body) {
   const name = cleanString(body.name);
   const email = cleanString(body.email).toLowerCase();
+  const phone = cleanString(body.phone);
   const topic = cleanString(body.topic);
   const message = cleanString(body.message);
   const rawReferredBy = cleanString(body.referredBy);
@@ -104,6 +106,10 @@ function parseSubmission(body) {
     throw new Error("A valid email is required.");
   }
 
+  if (!phone) {
+    throw new Error("Phone is required.");
+  }
+
   if (!topic) {
     throw new Error("Topic is required.");
   }
@@ -112,7 +118,7 @@ function parseSubmission(body) {
     throw new Error("Invalid referred by value.");
   }
 
-  return { name, email, topic, message, referredBy };
+  return { name, email, phone, topic, message, referredBy };
 }
 
 module.exports = async function handler(req, res) {
@@ -154,7 +160,8 @@ module.exports = async function handler(req, res) {
         lastName,
         name: submission.name,
         email: submission.email,
-        source: "Stryde Accounting Website",
+        phone: submission.phone,
+        source: LEAD_SOURCE,
         tags: ["website-lead"],
         customFields,
       }),
@@ -172,9 +179,9 @@ module.exports = async function handler(req, res) {
         contactId,
         pipelineId: config.pipelineId,
         pipelineStageId: config.pipelineStageId,
-        name: `${submission.name} - Website enquiry`,
+        name: submission.name,
         status: "open",
-        source: "Stryde Accounting Website",
+        source: LEAD_SOURCE,
       }),
     });
 

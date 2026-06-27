@@ -974,6 +974,10 @@
               </label>
             </div>
             <label>
+              Phone
+              <input name="phone" type="tel" autocomplete="tel" required />
+            </label>
+            <label>
               What do you need help with?
               <select name="topic">
                 <option>Tax return or tax planning</option>
@@ -1029,6 +1033,7 @@
             body: JSON.stringify({
               name: data.get("name"),
               email: data.get("email"),
+              phone: data.get("phone"),
               topic: data.get("topic"),
               referredBy: data.get("referredBy"),
               message: data.get("message"),
