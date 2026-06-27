@@ -135,12 +135,12 @@
       }
 
       .hero-inner {
-        min-height: clamp(600px, calc(100vh - 132px), 760px);
+        min-height: clamp(650px, calc(100vh - 108px), 820px);
         display: grid;
-        grid-template-columns: minmax(0, 1.02fr) minmax(360px, 0.78fr);
+        grid-template-columns: minmax(0, 0.98fr) minmax(420px, 0.84fr);
         align-items: center;
-        gap: 44px;
-        padding: 42px 0;
+        gap: 42px;
+        padding: 20px 0;
       }
 
       .eyebrow {
@@ -162,7 +162,7 @@
 
       h1 {
         max-width: 700px;
-        font-size: clamp(2.55rem, 5.6vw, 5rem);
+        font-size: clamp(2.35rem, 4.7vw, 4.25rem);
         font-weight: 800;
       }
 
@@ -186,7 +186,7 @@
       }
 
       .price-row {
-        margin-top: 26px;
+        margin-top: 22px;
         display: flex;
         flex-wrap: wrap;
         align-items: end;
@@ -216,14 +216,14 @@
       }
 
       .hero-actions {
-        margin-top: 26px;
+        margin-top: 22px;
         display: flex;
         flex-wrap: wrap;
         gap: 12px;
       }
 
       .hero-points {
-        margin: 24px 0 0;
+        margin: 22px 0 0;
         padding: 0;
         list-style: none;
         display: grid;
@@ -249,11 +249,12 @@
       }
 
       .offer-card {
+        position: relative;
         background: rgba(255, 255, 255, 0.96);
         color: var(--ink);
         border: 1px solid rgba(220, 228, 238, 0.9);
         border-radius: 8px;
-        padding: 28px;
+        padding: 24px;
         box-shadow: var(--shadow);
       }
 
@@ -264,6 +265,56 @@
       .offer-card p {
         margin: 12px 0 0;
         color: var(--muted);
+      }
+
+      .hero-form {
+        align-self: center;
+      }
+
+      .anchor-target {
+        position: absolute;
+        top: -96px;
+      }
+
+      .hero-form h2 {
+        font-size: clamp(1.85rem, 3vw, 2.7rem);
+      }
+
+      .hero-form .form-row {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .hero-form label {
+        gap: 6px;
+        font-size: 0.94rem;
+      }
+
+      .hero-form input,
+      .hero-form select,
+      .hero-form textarea {
+        min-height: 50px;
+        padding: 12px 14px;
+      }
+
+      .hero-form textarea {
+        min-height: 82px;
+      }
+
+      .trust-row {
+        margin-top: 14px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        color: var(--muted);
+        font-size: 0.82rem;
+        font-weight: 700;
+      }
+
+      .trust-row span {
+        padding: 7px 10px;
+        background: var(--soft);
+        border: 1px solid var(--line);
+        border-radius: 999px;
       }
 
       .mini-list {
@@ -338,6 +389,27 @@
         border-radius: 8px;
         color: #604514;
         font-size: 0.94rem;
+      }
+
+      .cta-strip {
+        margin-top: 28px;
+        padding: 22px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        background: var(--navy);
+        color: var(--white);
+        border-radius: 8px;
+      }
+
+      .cta-strip p {
+        margin: 0;
+        color: rgba(255, 255, 255, 0.78);
+      }
+
+      .cta-strip h3 {
+        color: var(--white);
       }
 
       .contact-grid {
@@ -481,12 +553,16 @@
         }
 
         .hero-inner {
-          min-height: calc(100vh - 128px);
-          padding: 38px 0 26px;
+          min-height: auto;
+          padding: 38px 0;
         }
 
-        .offer-card {
-          display: none;
+        .hero-form {
+          max-width: 620px;
+        }
+
+        .hero-form .form-row {
+          grid-template-columns: 1fr;
         }
 
         .grid-3 {
@@ -515,12 +591,28 @@
           grid-template-columns: 1fr;
         }
 
+        .price-row {
+          display: block;
+        }
+
+        .price-note {
+          margin-top: 10px;
+        }
+
+        .hero-actions .button {
+          width: 100%;
+        }
+
         main > section:not(.hero) {
           padding: 60px 0;
         }
 
         .contact-panel {
           padding: 22px;
+        }
+
+        .cta-strip {
+          display: grid;
         }
       }
     </style>
@@ -533,7 +625,7 @@
         </a>
         <div class="nav-actions">
           <a class="button button-outline" href="/">Main website</a>
-          <a class="button button-primary" href="#claim-offer">Start return</a>
+          <a class="button button-primary" href="#claim-offer">Claim offer</a>
         </div>
       </nav>
     </header>
@@ -542,112 +634,33 @@
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-inner">
           <div>
-            <p class="eyebrow">EOFY personal tax returns</p>
-            <h1 id="hero-title">Personal tax returns from $99.</h1>
+            <p class="eyebrow">EOFY personal tax return offer</p>
+            <h1 id="hero-title">Lodge your simple PAYG tax return from $99.</h1>
             <p class="hero-copy">
-              A clear, accountant-led tax return service for PAYG employees who want their
-              return lodged properly without overcomplicating the process.
+              Built for employees with straightforward salary or wage income who want a
+              registered tax agent to review, price-confirm and lodge their return without
+              the back-and-forth.
             </p>
             <div class="price-row" aria-label="Offer price">
               <div class="price"><span>from</span> $99</div>
-              <p class="price-note">For basic PAYG salary and wage tax returns only. Final pricing is confirmed after we review your situation.</p>
+              <p class="price-note">For basic PAYG salary and wage tax returns only. We confirm your final fee before any lodgement work starts.</p>
             </div>
             <div class="hero-actions">
               <a class="button button-primary" href="#claim-offer">Claim EOFY offer</a>
               <a class="button button-outline" href="tel:+61449655904">Call +61 449 655 904</a>
             </div>
             <ul class="hero-points" aria-label="Key benefits">
-              <li>Registered Tax Agent No. 26363623</li>
-              <li>Online support across Australia</li>
-              <li>Clear next steps before lodgement</li>
+              <li>Fast online intake for EOFY</li>
+              <li>Price confirmed before we proceed</li>
+              <li>Prepared by a registered tax agent</li>
             </ul>
           </div>
 
-          <aside class="offer-card" aria-label="Offer summary">
-            <p class="eyebrow">What's included</p>
-            <h2>Built for straightforward PAYG returns.</h2>
-            <p>
-              We collect the details, review your basic income and deductions, prepare the
-              return and confirm before lodgement.
-            </p>
-            <ul class="mini-list">
-              <li>PAYG salary and wage income</li>
-              <li>Standard work-related deductions</li>
-              <li>Tax agent review before lodgement</li>
-              <li>Simple online process</li>
-            </ul>
-            <div class="notice">
-              The $99 starting price applies only to a basic individual PAYG return. Extra
-              work is quoted before we proceed.
-            </div>
-          </aside>
-        </div>
-      </section>
-
-      <section>
-        <div class="section-inner">
-          <div class="section-head">
-            <p class="eyebrow">Is this for you?</p>
-            <h2>Best fit for simple employee tax returns.</h2>
-            <p>
-              This EOFY offer is designed for individuals with a straightforward PAYG salary
-              or wage return. If your tax situation is more involved, we can still help and
-              will confirm the correct fee first.
-            </p>
-          </div>
-          <div class="grid-3">
-            <article class="info-card">
-              <h3>Usually fits the $99 starting price</h3>
-              <ul>
-                <li>PAYG salary or wages</li>
-                <li>Standard deductions</li>
-                <li>Single-year individual return</li>
-                <li>No complex income streams</li>
-              </ul>
-            </article>
-            <article class="info-card">
-              <h3>May need a custom quote</h3>
-              <ul>
-                <li>ABN or sole trader income</li>
-                <li>Rental property income</li>
-                <li>Capital gains, crypto or shares</li>
-                <li>Foreign income or multiple years</li>
-              </ul>
-            </article>
-            <article class="info-card">
-              <h3>How it works</h3>
-              <ul>
-                <li>Send your details</li>
-                <li>We review the type of return</li>
-                <li>We confirm the price and documents</li>
-                <li>Your return is prepared for lodgement</li>
-              </ul>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="claim-offer" class="soft-section">
-        <div class="section-inner contact-grid">
-          <div class="contact-panel">
+          <form class="offer-card hero-form contact-form" id="tax-return-form">
+            <span class="anchor-target" id="claim-offer" aria-hidden="true"></span>
             <p class="eyebrow">Claim the offer</p>
-            <h2>Start your personal tax return.</h2>
-            <ul class="contact-list">
-              <li><strong>Offer:</strong> Personal tax returns from $99</li>
-              <li><strong>Best for:</strong> Basic PAYG salary and wage returns</li>
-              <li><strong>Email:</strong> <a href="mailto:connect@strydeaccounting.com.au">connect@strydeaccounting.com.au</a></li>
-              <li><strong>Phone:</strong> <a href="tel:+61449655904">+61 449 655 904</a></li>
-            </ul>
-            <div class="notice">
-              Disclaimer: the advertised starting price applies to basic PAYG individual tax
-              returns only. Returns involving ABN income, sole trader activity, rental
-              properties, capital gains, crypto, foreign income, amendments, overdue returns,
-              complex deductions or other additional work may cost more. Stryde Accounting
-              will confirm pricing before proceeding.
-            </div>
-          </div>
-
-          <form class="contact-panel contact-form" id="tax-return-form">
+            <h2>Start your return today.</h2>
+            <p>Leave your details and we will confirm whether your return fits the $99 PAYG offer.</p>
             <div class="form-row">
               <label>
                 Name
@@ -679,12 +692,100 @@
             <input name="topic" type="hidden" value="Personal tax return from $99 EOFY campaign" />
             <input name="referredBy" type="hidden" value="" />
             <p class="form-disclaimer">
-              By submitting, you are asking Stryde Accounting to contact you about this
-              EOFY personal tax return offer. The $99 starting price is subject to review.
+              The $99 starting price applies to basic PAYG returns only. We review your
+              details and confirm pricing before proceeding.
             </p>
             <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
-            <button class="button button-primary" type="submit">Start my return</button>
+            <button class="button button-primary" type="submit">Claim EOFY offer</button>
+            <div class="trust-row" aria-label="Trust indicators">
+              <span>Registered Tax Agent</span>
+              <span>Online Australia-wide</span>
+              <span>No lodgement before price confirmation</span>
+            </div>
           </form>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-inner">
+          <div class="section-head">
+            <p class="eyebrow">Why claim now?</p>
+            <h2>Get your EOFY tax return moving without guessing the cost.</h2>
+            <p>
+              The offer is intentionally narrow: simple PAYG returns start from $99, and
+              anything outside that scope is quoted before we do the work.
+            </p>
+          </div>
+          <div class="grid-3">
+            <article class="info-card">
+              <h3>Know if you qualify</h3>
+              <ul>
+                <li>PAYG salary or wages</li>
+                <li>Standard deductions</li>
+                <li>Single-year individual return</li>
+                <li>No complex income streams</li>
+              </ul>
+            </article>
+            <article class="info-card">
+              <h3>Avoid surprise fees</h3>
+              <ul>
+                <li>Your situation is reviewed first</li>
+                <li>Extra work is quoted clearly</li>
+                <li>You approve the next step</li>
+                <li>No lodgement starts without confirmation</li>
+              </ul>
+            </article>
+            <article class="info-card">
+              <h3>Move faster this EOFY</h3>
+              <ul>
+                <li>Submit the short form</li>
+                <li>Get the document request</li>
+                <li>We prepare and review</li>
+                <li>You confirm before lodgement</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="soft-section">
+        <div class="section-inner">
+          <div class="section-head">
+            <p class="eyebrow">Offer details</p>
+            <h2>Simple PAYG returns start from $99. Complex returns are quoted first.</h2>
+            <p>
+              This keeps the campaign honest: if your return is basic, the offer may apply.
+              If it involves extra work, you will know before committing.
+            </p>
+          </div>
+          <div class="grid-3">
+            <article class="info-card">
+              <h3>Usually suits the offer</h3>
+              <p>PAYG salary or wage income, standard deductions, one individual return and no complex income streams.</p>
+            </article>
+            <article class="info-card">
+              <h3>May need a custom quote</h3>
+              <p>ABN income, sole trader activity, rental property, shares, crypto, capital gains, foreign income, amendments or overdue years.</p>
+            </article>
+            <article class="info-card">
+              <h3>Prepared properly</h3>
+              <p>Stryde Accounting reviews your details, confirms the right fee and prepares the return for lodgement.</p>
+            </article>
+          </div>
+          <div class="notice">
+            Disclaimer: the advertised starting price applies to basic PAYG individual tax
+            returns only. Returns involving ABN income, sole trader activity, rental
+            properties, capital gains, crypto, foreign income, amendments, overdue returns,
+            complex deductions or other additional work may cost more. Stryde Accounting
+            will confirm pricing before proceeding.
+          </div>
+          <div class="cta-strip">
+            <div>
+              <h3>Ready to check if your return qualifies?</h3>
+              <p>Submit the hero form and we will confirm the right next step.</p>
+            </div>
+            <a class="button button-primary" href="#claim-offer">Claim EOFY offer</a>
+          </div>
         </div>
       </section>
     </main>
