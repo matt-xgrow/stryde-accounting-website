@@ -985,6 +985,16 @@
               </select>
             </label>
             <label>
+              Referred by
+              <select name="referredBy">
+                <option value="">Select one</option>
+                <option>Tejas Dhami</option>
+                <option>Matt</option>
+                <option>Bessa</option>
+                <option>Other</option>
+              </select>
+            </label>
+            <label>
               Message
               <textarea name="message" placeholder="Tell us a little about your business or question."></textarea>
             </label>
@@ -1004,14 +1014,41 @@
     <script>
       const form = document.querySelector("#contact-form");
 
-      form.addEventListener("submit", (event) => {
+      form.addEventListener("submit", async (event) => {
         event.preventDefault();
         const data = new FormData(form);
-        const subject = encodeURIComponent("New enquiry from Stryde Accounting website");
-        const body = encodeURIComponent(
-          `Name: ${data.get("name")}\nEmail: ${data.get("email")}\nTopic: ${data.get("topic")}\n\nMessage:\n${data.get("message") || ""}`
-        );
-        window.location.href = `mailto:connect@strydeaccounting.com.au?subject=${subject}&body=${body}`;
+        const button = form.querySelector('button[type="submit"]');
+        const originalText = button.textContent;
+
+        button.disabled = true;
+        button.textContent = "Sending...";
+
+        try {
+          const response = await fetch("/api/leads", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              name: data.get("name"),
+              email: data.get("email"),
+              topic: data.get("topic"),
+              referredBy: data.get("referredBy"),
+              message: data.get("message"),
+            }),
+          });
+          const result = await response.json();
+
+          if (!response.ok || !result.ok) {
+            throw new Error(result.message || "Unable to send enquiry.");
+          }
+
+          form.reset();
+          alert("Thanks. Your enquiry has been sent to Stryde Accounting.");
+        } catch (error) {
+          alert(error.message || "We could not send your enquiry. Please try again.");
+        } finally {
+          button.disabled = false;
+          button.textContent = originalText;
+        }
       });
     </script>
   </body>
