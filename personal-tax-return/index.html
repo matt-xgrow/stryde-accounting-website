@@ -1,0 +1,748 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Personal Tax Returns From $99 | Stryde Accounting</title>
+    <meta
+      name="description"
+      content="EOFY personal tax returns from $99 for basic PAYG salary and wage returns. Lodge with Stryde Accounting, registered tax agents in Australia."
+    />
+    <link rel="icon" type="image/png" href="/assets/mark.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Funnel+Sans:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --navy: #07173f;
+        --green: #1be088;
+        --white: #ffffff;
+        --ink: #10213b;
+        --muted: #5c677c;
+        --line: #dce4ee;
+        --soft: #f5f8fb;
+        --soft-green: #e9fff5;
+        --warning: #fff6df;
+        --amber: #ffcf70;
+        --shadow: 0 24px 70px rgba(7, 23, 63, 0.14);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        color: var(--ink);
+        background: var(--white);
+        font-family: "Poppins", Arial, sans-serif;
+        line-height: 1.55;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .site-header {
+        position: fixed;
+        z-index: 20;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.94);
+        border-bottom: 1px solid rgba(220, 228, 238, 0.85);
+        backdrop-filter: blur(16px);
+      }
+
+      .nav {
+        width: min(1160px, calc(100% - 40px));
+        min-height: 76px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .brand {
+        width: 174px;
+        flex: 0 0 auto;
+      }
+
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .button {
+        min-height: 48px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 0 20px;
+        border: 1px solid transparent;
+        border-radius: 8px;
+        font-family: "Funnel Sans", "Poppins", Arial, sans-serif;
+        font-weight: 800;
+        text-decoration: none;
+        cursor: pointer;
+        transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+      }
+
+      .button:hover {
+        transform: translateY(-1px);
+      }
+
+      .button-primary {
+        color: var(--navy);
+        background: var(--green);
+        box-shadow: 0 14px 30px rgba(27, 224, 136, 0.27);
+      }
+
+      .button-outline {
+        color: var(--navy);
+        border-color: rgba(7, 23, 63, 0.18);
+        background: var(--white);
+      }
+
+      .hero {
+        margin-top: 76px;
+        color: var(--white);
+        background:
+          linear-gradient(90deg, rgba(7, 23, 63, 0.97) 0%, rgba(7, 23, 63, 0.9) 46%, rgba(7, 23, 63, 0.52) 100%),
+          url("/assets/accounting-desk.jpg") center right / cover no-repeat;
+      }
+
+      .hero-inner,
+      .section-inner,
+      .footer-inner {
+        width: min(1160px, calc(100% - 40px));
+        margin: 0 auto;
+      }
+
+      .hero-inner {
+        min-height: clamp(600px, calc(100vh - 132px), 760px);
+        display: grid;
+        grid-template-columns: minmax(0, 1.02fr) minmax(360px, 0.78fr);
+        align-items: center;
+        gap: 44px;
+        padding: 42px 0;
+      }
+
+      .eyebrow {
+        margin: 0 0 12px;
+        color: var(--green);
+        font-family: "Funnel Sans", "Poppins", Arial, sans-serif;
+        font-size: 0.88rem;
+        font-weight: 800;
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        font-family: "Funnel Sans", "Poppins", Arial, sans-serif;
+        line-height: 1.05;
+      }
+
+      h1 {
+        max-width: 700px;
+        font-size: clamp(2.55rem, 5.6vw, 5rem);
+        font-weight: 800;
+      }
+
+      h2 {
+        color: var(--navy);
+        font-size: clamp(2rem, 4vw, 3.45rem);
+        font-weight: 800;
+      }
+
+      h3 {
+        color: var(--navy);
+        font-size: 1.2rem;
+        font-weight: 800;
+      }
+
+      .hero-copy {
+        max-width: 620px;
+        margin: 18px 0 0;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: clamp(1.03rem, 1.7vw, 1.2rem);
+      }
+
+      .price-row {
+        margin-top: 26px;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: end;
+        gap: 12px 18px;
+      }
+
+      .price {
+        font-family: "Funnel Sans", "Poppins", Arial, sans-serif;
+        font-size: clamp(3rem, 7vw, 5.7rem);
+        font-weight: 800;
+        line-height: 0.9;
+      }
+
+      .price span {
+        display: inline-block;
+        margin-right: 10px;
+        font-size: 0.26em;
+        text-transform: uppercase;
+        vertical-align: middle;
+      }
+
+      .price-note {
+        max-width: 310px;
+        margin: 0 0 7px;
+        color: rgba(255, 255, 255, 0.78);
+        font-size: 0.92rem;
+      }
+
+      .hero-actions {
+        margin-top: 26px;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+
+      .hero-points {
+        margin: 24px 0 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 10px;
+      }
+
+      .hero-points li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: rgba(255, 255, 255, 0.9);
+        font-weight: 600;
+      }
+
+      .hero-points li::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--green);
+        box-shadow: 0 0 0 6px rgba(27, 224, 136, 0.14);
+        flex: 0 0 auto;
+      }
+
+      .offer-card {
+        background: rgba(255, 255, 255, 0.96);
+        color: var(--ink);
+        border: 1px solid rgba(220, 228, 238, 0.9);
+        border-radius: 8px;
+        padding: 28px;
+        box-shadow: var(--shadow);
+      }
+
+      .offer-card h2 {
+        font-size: clamp(1.8rem, 3vw, 2.6rem);
+      }
+
+      .offer-card p {
+        margin: 12px 0 0;
+        color: var(--muted);
+      }
+
+      .mini-list {
+        margin: 20px 0 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 10px;
+      }
+
+      .mini-list li {
+        display: flex;
+        gap: 10px;
+        color: var(--ink);
+        font-weight: 600;
+      }
+
+      .mini-list li::before {
+        content: "✓";
+        color: var(--green);
+        font-weight: 800;
+      }
+
+      main > section:not(.hero) {
+        padding: 84px 0;
+      }
+
+      .soft-section {
+        background: var(--soft);
+      }
+
+      .section-head {
+        max-width: 740px;
+        margin-bottom: 34px;
+      }
+
+      .section-head p:not(.eyebrow) {
+        margin: 16px 0 0;
+        color: var(--muted);
+        font-size: 1.04rem;
+      }
+
+      .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 18px;
+      }
+
+      .info-card {
+        min-height: 100%;
+        padding: 24px;
+        background: var(--white);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+      }
+
+      .info-card p,
+      .info-card ul {
+        margin: 12px 0 0;
+        color: var(--muted);
+      }
+
+      .info-card ul {
+        padding-left: 20px;
+      }
+
+      .notice {
+        margin-top: 18px;
+        padding: 18px;
+        background: var(--warning);
+        border: 1px solid rgba(255, 207, 112, 0.8);
+        border-radius: 8px;
+        color: #604514;
+        font-size: 0.94rem;
+      }
+
+      .contact-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 0.82fr) minmax(420px, 1fr);
+        gap: 28px;
+        align-items: start;
+      }
+
+      .contact-panel {
+        background: var(--white);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: clamp(24px, 4vw, 38px);
+      }
+
+      .contact-panel h2 {
+        font-size: clamp(2rem, 4vw, 3.2rem);
+      }
+
+      .contact-list {
+        margin: 28px 0 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 14px;
+        color: var(--ink);
+        font-size: 1.02rem;
+      }
+
+      .contact-list strong,
+      .contact-list a {
+        color: var(--navy);
+        font-weight: 800;
+        text-decoration: none;
+      }
+
+      .contact-form {
+        display: grid;
+        gap: 16px;
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      label {
+        display: grid;
+        gap: 8px;
+        color: var(--navy);
+        font-family: "Funnel Sans", "Poppins", Arial, sans-serif;
+        font-size: 1rem;
+        font-weight: 800;
+      }
+
+      input,
+      select,
+      textarea {
+        width: 100%;
+        min-height: 54px;
+        padding: 14px 16px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        color: var(--ink);
+        background: var(--white);
+        font: 600 1rem "Poppins", Arial, sans-serif;
+        outline: none;
+        transition: border-color 160ms ease, box-shadow 160ms ease;
+      }
+
+      textarea {
+        min-height: 116px;
+        resize: vertical;
+      }
+
+      input:focus,
+      select:focus,
+      textarea:focus {
+        border-color: rgba(27, 224, 136, 0.9);
+        box-shadow: 0 0 0 4px rgba(27, 224, 136, 0.14);
+      }
+
+      .form-disclaimer {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.86rem;
+      }
+
+      .form-message {
+        display: none;
+        margin: 0;
+        padding: 12px 14px;
+        border-radius: 8px;
+        font-weight: 700;
+      }
+
+      .form-message.is-success {
+        display: block;
+        color: #07572f;
+        background: var(--soft-green);
+      }
+
+      .form-message.is-error {
+        display: block;
+        color: #7a1d1d;
+        background: #fff0f0;
+      }
+
+      .site-footer {
+        padding: 28px 0;
+        color: rgba(255, 255, 255, 0.72);
+        background: var(--navy);
+      }
+
+      .footer-inner {
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+        flex-wrap: wrap;
+        font-size: 0.92rem;
+      }
+
+      .footer-inner strong {
+        color: var(--white);
+      }
+
+      @media (max-width: 900px) {
+        .nav {
+          width: min(100% - 28px, 1160px);
+        }
+
+        .nav-actions .button-outline {
+          display: none;
+        }
+
+        .hero-inner,
+        .contact-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .hero-inner {
+          min-height: calc(100vh - 128px);
+          padding: 38px 0 26px;
+        }
+
+        .offer-card {
+          display: none;
+        }
+
+        .grid-3 {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .hero-inner,
+        .section-inner,
+        .footer-inner {
+          width: min(100% - 28px, 1160px);
+        }
+
+        .brand {
+          width: 150px;
+        }
+
+        .hero {
+          background:
+            linear-gradient(90deg, rgba(7, 23, 63, 0.97) 0%, rgba(7, 23, 63, 0.9) 100%),
+            url("/assets/accounting-desk.jpg") center / cover no-repeat;
+        }
+
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+
+        main > section:not(.hero) {
+          padding: 60px 0;
+        }
+
+        .contact-panel {
+          padding: 22px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav" aria-label="Primary navigation">
+        <a class="brand" href="/" aria-label="Stryde Accounting home">
+          <img src="/assets/logo-full.png" alt="Stryde Accounting" />
+        </a>
+        <div class="nav-actions">
+          <a class="button button-outline" href="/">Main website</a>
+          <a class="button button-primary" href="#claim-offer">Start return</a>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-inner">
+          <div>
+            <p class="eyebrow">EOFY personal tax returns</p>
+            <h1 id="hero-title">Personal tax returns from $99.</h1>
+            <p class="hero-copy">
+              A clear, accountant-led tax return service for PAYG employees who want their
+              return lodged properly without overcomplicating the process.
+            </p>
+            <div class="price-row" aria-label="Offer price">
+              <div class="price"><span>from</span> $99</div>
+              <p class="price-note">For basic PAYG salary and wage tax returns only. Final pricing is confirmed after we review your situation.</p>
+            </div>
+            <div class="hero-actions">
+              <a class="button button-primary" href="#claim-offer">Claim EOFY offer</a>
+              <a class="button button-outline" href="tel:+61449655904">Call +61 449 655 904</a>
+            </div>
+            <ul class="hero-points" aria-label="Key benefits">
+              <li>Registered Tax Agent No. 26363623</li>
+              <li>Online support across Australia</li>
+              <li>Clear next steps before lodgement</li>
+            </ul>
+          </div>
+
+          <aside class="offer-card" aria-label="Offer summary">
+            <p class="eyebrow">What's included</p>
+            <h2>Built for straightforward PAYG returns.</h2>
+            <p>
+              We collect the details, review your basic income and deductions, prepare the
+              return and confirm before lodgement.
+            </p>
+            <ul class="mini-list">
+              <li>PAYG salary and wage income</li>
+              <li>Standard work-related deductions</li>
+              <li>Tax agent review before lodgement</li>
+              <li>Simple online process</li>
+            </ul>
+            <div class="notice">
+              The $99 starting price applies only to a basic individual PAYG return. Extra
+              work is quoted before we proceed.
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-inner">
+          <div class="section-head">
+            <p class="eyebrow">Is this for you?</p>
+            <h2>Best fit for simple employee tax returns.</h2>
+            <p>
+              This EOFY offer is designed for individuals with a straightforward PAYG salary
+              or wage return. If your tax situation is more involved, we can still help and
+              will confirm the correct fee first.
+            </p>
+          </div>
+          <div class="grid-3">
+            <article class="info-card">
+              <h3>Usually fits the $99 starting price</h3>
+              <ul>
+                <li>PAYG salary or wages</li>
+                <li>Standard deductions</li>
+                <li>Single-year individual return</li>
+                <li>No complex income streams</li>
+              </ul>
+            </article>
+            <article class="info-card">
+              <h3>May need a custom quote</h3>
+              <ul>
+                <li>ABN or sole trader income</li>
+                <li>Rental property income</li>
+                <li>Capital gains, crypto or shares</li>
+                <li>Foreign income or multiple years</li>
+              </ul>
+            </article>
+            <article class="info-card">
+              <h3>How it works</h3>
+              <ul>
+                <li>Send your details</li>
+                <li>We review the type of return</li>
+                <li>We confirm the price and documents</li>
+                <li>Your return is prepared for lodgement</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="claim-offer" class="soft-section">
+        <div class="section-inner contact-grid">
+          <div class="contact-panel">
+            <p class="eyebrow">Claim the offer</p>
+            <h2>Start your personal tax return.</h2>
+            <ul class="contact-list">
+              <li><strong>Offer:</strong> Personal tax returns from $99</li>
+              <li><strong>Best for:</strong> Basic PAYG salary and wage returns</li>
+              <li><strong>Email:</strong> <a href="mailto:connect@strydeaccounting.com.au">connect@strydeaccounting.com.au</a></li>
+              <li><strong>Phone:</strong> <a href="tel:+61449655904">+61 449 655 904</a></li>
+            </ul>
+            <div class="notice">
+              Disclaimer: the advertised starting price applies to basic PAYG individual tax
+              returns only. Returns involving ABN income, sole trader activity, rental
+              properties, capital gains, crypto, foreign income, amendments, overdue returns,
+              complex deductions or other additional work may cost more. Stryde Accounting
+              will confirm pricing before proceeding.
+            </div>
+          </div>
+
+          <form class="contact-panel contact-form" id="tax-return-form">
+            <div class="form-row">
+              <label>
+                Name
+                <input name="name" autocomplete="name" required />
+              </label>
+              <label>
+                Email
+                <input name="email" type="email" autocomplete="email" required />
+              </label>
+            </div>
+            <label>
+              Phone
+              <input name="phone" type="tel" autocomplete="tel" required />
+            </label>
+            <label>
+              Which best describes your tax return?
+              <select name="taxSituation" required>
+                <option>Basic PAYG salary/wage return</option>
+                <option>PAYG with work-related deductions</option>
+                <option>ABN or sole trader income</option>
+                <option>Rental, shares, crypto or capital gains</option>
+                <option>Not sure yet</option>
+              </select>
+            </label>
+            <label>
+              Anything we should know?
+              <textarea name="notes" placeholder="Example: I have one PAYG job and standard work deductions."></textarea>
+            </label>
+            <input name="topic" type="hidden" value="Personal tax return from $99 EOFY campaign" />
+            <input name="referredBy" type="hidden" value="" />
+            <p class="form-disclaimer">
+              By submitting, you are asking Stryde Accounting to contact you about this
+              EOFY personal tax return offer. The $99 starting price is subject to review.
+            </p>
+            <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
+            <button class="button button-primary" type="submit">Start my return</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div><strong>Stryde Accounting</strong> - A leap forward.</div>
+        <div>Registered Tax Agent No. 26363623 | ABN 50 697 914 739</div>
+      </div>
+    </footer>
+
+    <script>
+      const form = document.querySelector("#tax-return-form");
+      const formMessage = document.querySelector("#form-message");
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const data = new FormData(form);
+        const button = form.querySelector('button[type="submit"]');
+        const originalText = button.textContent;
+        const notes = data.get("notes") || "";
+        const taxSituation = data.get("taxSituation") || "";
+
+        formMessage.className = "form-message";
+        formMessage.textContent = "";
+        button.disabled = true;
+        button.textContent = "Sending...";
+
+        try {
+          const response = await fetch("/api/leads", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              name: data.get("name"),
+              email: data.get("email"),
+              phone: data.get("phone"),
+              topic: data.get("topic"),
+              referredBy: data.get("referredBy"),
+              message: `Campaign: EOFY personal tax returns from $99\nTax situation: ${taxSituation}\nNotes: ${notes}`.trim(),
+            }),
+          });
+          const result = await response.json();
+
+          if (!response.ok || !result.ok) {
+            throw new Error(result.message || "Unable to send enquiry.");
+          }
+
+          form.reset();
+          formMessage.className = "form-message is-success";
+          formMessage.textContent = "Thanks. Your details have been sent to Stryde Accounting.";
+        } catch (error) {
+          formMessage.className = "form-message is-error";
+          formMessage.textContent = error.message || "We could not send your enquiry. Please try again.";
+        } finally {
+          button.disabled = false;
+          button.textContent = originalText;
+        }
+      });
+    </script>
+  </body>
+</html>
