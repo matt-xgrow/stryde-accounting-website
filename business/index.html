@@ -104,6 +104,46 @@
         font-weight: 700;
       }
 
+      .nav-menu {
+        display: contents;
+      }
+
+      .nav-toggle {
+        display: none;
+        width: 46px;
+        height: 44px;
+        flex: 0 0 auto;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 5px;
+        padding: 0;
+        border: 1px solid rgba(7, 23, 63, 0.16);
+        border-radius: 8px;
+        background: var(--white);
+        cursor: pointer;
+      }
+
+      .nav-toggle span {
+        width: 20px;
+        height: 2px;
+        border-radius: 2px;
+        background: var(--navy);
+        transition: transform 160ms ease, opacity 160ms ease;
+      }
+
+      .nav-toggle[aria-expanded="true"] span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+
+      .nav-toggle[aria-expanded="true"] span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .nav-toggle[aria-expanded="true"] span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
       .nav-actions {
         display: flex;
         align-items: center;
@@ -593,8 +633,46 @@
           min-height: 70px;
         }
 
-        .nav-links {
+        .nav-toggle {
+          display: inline-flex;
+        }
+
+        .nav-menu {
           display: none;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          right: 0;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 16px;
+          padding: 16px 20px 20px;
+          background: rgba(255, 255, 255, 0.99);
+          border-bottom: 1px solid var(--line);
+          box-shadow: var(--shadow);
+        }
+
+        .nav-menu.open {
+          display: flex;
+        }
+
+        .nav-links {
+          display: flex;
+          flex-direction: column;
+          align-items: stretch;
+          gap: 2px;
+          font-size: 1rem;
+        }
+
+        .nav-links a {
+          padding: 11px 4px;
+          border-bottom: 1px solid var(--line);
+        }
+
+        .nav-actions {
+          flex-direction: column;
+          align-items: stretch;
+          gap: 10px;
         }
 
         .brand {
@@ -647,10 +725,6 @@
           width: min(100% - 28px, 1160px);
         }
 
-        .nav-actions .button-outline {
-          display: none;
-        }
-
         .button {
           width: 100%;
         }
@@ -675,16 +749,21 @@
         <a class="brand" href="/" aria-label="Stryde Accounting home">
           <img src="/assets/logo-full.png" alt="Stryde Accounting" />
         </a>
-        <div class="nav-links">
-          <a href="/#services">Services</a>
-          <a class="active" href="/business/">Business</a>
-          <a href="/personal-tax-return/">Personal tax</a>
-          <a href="/#process">Process</a>
-          <a href="/#contact">Contact</a>
-        </div>
-        <div class="nav-actions">
-          <a class="button button-outline" href="tel:+61449655904">Call now</a>
-          <a class="button button-primary" href="https://api.leadconnectorhq.com/widget/bookings/strategy-call-stryde" target="_blank" rel="noopener">Book a consultation</a>
+        <button class="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-menu">
+          <span></span><span></span><span></span>
+        </button>
+        <div class="nav-menu" id="nav-menu">
+          <div class="nav-links">
+            <a href="/#services">Services</a>
+            <a class="active" href="/business/">Business</a>
+            <a href="/personal-tax-return/">Personal tax</a>
+            <a href="/#process">Process</a>
+            <a href="/#contact">Contact</a>
+          </div>
+          <div class="nav-actions">
+            <a class="button button-outline" href="tel:+61449655904">Call now</a>
+            <a class="button button-primary" href="https://api.leadconnectorhq.com/widget/bookings/strategy-call-stryde" target="_blank" rel="noopener">Book a consultation</a>
+          </div>
         </div>
       </nav>
     </header>
@@ -952,6 +1031,24 @@
     </footer>
 
     <script>
+      // Mobile hamburger menu toggle.
+      (function () {
+        const toggle = document.querySelector(".nav-toggle");
+        const menu = document.querySelector(".nav-menu");
+        if (toggle && menu) {
+          toggle.addEventListener("click", () => {
+            const open = menu.classList.toggle("open");
+            toggle.setAttribute("aria-expanded", open ? "true" : "false");
+          });
+          menu.querySelectorAll("a").forEach((link) => {
+            link.addEventListener("click", () => {
+              menu.classList.remove("open");
+              toggle.setAttribute("aria-expanded", "false");
+            });
+          });
+        }
+      })();
+
       // Keep phone fields to an Australian mobile (4XX XXX XXX) and format
       // them as the user types. The +61 prefix is shown beside the input.
       function australianMobileDigits(value) {
