@@ -19,7 +19,6 @@ function getConfig() {
     "GHL_PIPELINE_ID",
     "GHL_PIPELINE_STAGE_ID",
     "GHL_REFERRED_BY_FIELD_ID",
-    "GHL_ENQUIRY_TOPIC_FIELD_ID",
     "GHL_ENQUIRY_MESSAGE_FIELD_ID",
     "GHL_TAX_SITUATION_FIELD_ID",
   ];
@@ -35,7 +34,6 @@ function getConfig() {
     pipelineId: process.env.GHL_PIPELINE_ID,
     pipelineStageId: process.env.GHL_PIPELINE_STAGE_ID,
     referredByFieldId: process.env.GHL_REFERRED_BY_FIELD_ID,
-    enquiryTopicFieldId: process.env.GHL_ENQUIRY_TOPIC_FIELD_ID,
     enquiryMessageFieldId: process.env.GHL_ENQUIRY_MESSAGE_FIELD_ID,
     taxSituationFieldId: process.env.GHL_TAX_SITUATION_FIELD_ID,
   };
@@ -145,7 +143,7 @@ module.exports = async function handler(req, res) {
     const { firstName, lastName } = splitName(submission.name);
     const customFields = [
       {
-        id: config.enquiryTopicFieldId,
+        key: "topic",
         field_value: submission.topic,
       },
     ];
