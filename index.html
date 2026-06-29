@@ -333,7 +333,7 @@
         font-size: clamp(1.7rem, 3.4vw, 2.6rem);
       }
 
-      .offer-band h2 span {
+      .offer-band h2 .amount {
         text-decoration: underline;
         text-decoration-color: rgba(7, 23, 63, 0.35);
         text-underline-offset: 5px;
@@ -674,11 +674,53 @@
         color: var(--ink);
         background: var(--white);
         font: inherit;
+        font-weight: 400;
       }
 
       textarea {
         min-height: 130px;
         resize: vertical;
+      }
+
+      .phone-field {
+        display: flex;
+        align-items: stretch;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--white);
+      }
+
+      .phone-field:focus-within {
+        border-color: rgba(27, 224, 136, 0.9);
+        box-shadow: 0 0 0 3px rgba(27, 224, 136, 0.16);
+      }
+
+      .phone-prefix {
+        display: inline-flex;
+        align-items: center;
+        padding: 0 12px;
+        color: var(--navy);
+        font-weight: 700;
+        white-space: nowrap;
+        background: var(--soft);
+        border-right: 1px solid var(--line);
+      }
+
+      .phone-field input {
+        flex: 1;
+        min-width: 0;
+        border: 0;
+        border-radius: 0;
+      }
+
+      .dollar {
+        font-size: 0.6em;
+        font-weight: inherit;
+        vertical-align: top;
+        position: relative;
+        top: 0.1em;
+        margin-right: 0.02em;
       }
 
       .form-row {
@@ -887,7 +929,20 @@
                 </div>
                 <label>
                   Phone
-                  <input name="phone" type="tel" autocomplete="tel" required />
+                  <span class="phone-field">
+                    <span class="phone-prefix" aria-hidden="true">+61</span>
+                    <input
+                      name="phone"
+                      type="tel"
+                      inputmode="numeric"
+                      autocomplete="tel-national"
+                      placeholder="4XX XXX XXX"
+                      maxlength="11"
+                      pattern="4\d{2} ?\d{3} ?\d{3}"
+                      title="Enter an Australian mobile number starting with 4, e.g. 412 345 678"
+                      required
+                    />
+                  </span>
                 </label>
                 <label>
                   What do you need help with?
@@ -917,7 +972,7 @@
         <div class="section-inner offer-band-inner">
           <div>
             <p class="eyebrow">EOFY personal tax offer</p>
-            <h2 id="offer-band-title">Tax Returns from <span>$99</span></h2>
+            <h2 id="offer-band-title">Tax Returns from <span class="amount"><span class="dollar">$</span>99</span></h2>
             <p>
               Simple PAYG salary &amp; wage returns, reviewed and lodged by a registered tax agent. Your final fee is always confirmed before any work starts.
             </p>
@@ -1184,7 +1239,20 @@
             </div>
             <label>
               Phone
-              <input name="phone" type="tel" autocomplete="tel" required />
+              <span class="phone-field">
+                <span class="phone-prefix" aria-hidden="true">+61</span>
+                <input
+                  name="phone"
+                  type="tel"
+                  inputmode="numeric"
+                  autocomplete="tel-national"
+                  placeholder="4XX XXX XXX"
+                  maxlength="11"
+                  pattern="4\d{2} ?\d{3} ?\d{3}"
+                  title="Enter an Australian mobile number starting with 4, e.g. 412 345 678"
+                  required
+                />
+              </span>
             </label>
             <label>
               What do you need help with?
@@ -1231,7 +1299,33 @@
     </footer>
 
     <script>
+      // Keep phone fields to an Australian mobile (4XX XXX XXX) and format
+      // them as the user types. The +61 prefix is shown beside the input.
+      function australianMobileDigits(value) {
+        let digits = String(value).replace(/\D/g, "");
+        if (digits.startsWith("61")) digits = digits.slice(2);
+        if (digits.startsWith("0")) digits = digits.slice(1);
+        return digits.slice(0, 9);
+      }
+
+      function formatAustralianMobile(digits) {
+        if (digits.length > 6) {
+          return `${digits.slice(0, 3)} ${digits.slice(3, 6)} ${digits.slice(6)}`;
+        }
+        if (digits.length > 3) {
+          return `${digits.slice(0, 3)} ${digits.slice(3)}`;
+        }
+        return digits;
+      }
+
       document.querySelectorAll(".lead-form").forEach((form) => {
+        const phoneInput = form.querySelector('input[name="phone"]');
+        if (phoneInput) {
+          phoneInput.addEventListener("input", () => {
+            phoneInput.value = formatAustralianMobile(australianMobileDigits(phoneInput.value));
+          });
+        }
+
         form.addEventListener("submit", async (event) => {
           event.preventDefault();
           const data = new FormData(form);
@@ -1239,12 +1333,25 @@
           const status = form.querySelector(".form-status");
           const originalText = button.textContent;
 
-          button.disabled = true;
-          button.textContent = "Sending...";
           if (status) {
             status.textContent = "";
             status.className = "form-status";
           }
+
+          const phoneDigits = australianMobileDigits(phoneInput ? phoneInput.value : data.get("phone"));
+          if (!/^4\d{8}$/.test(phoneDigits)) {
+            if (status) {
+              status.textContent =
+                "Please enter a valid Australian mobile number, e.g. 412 345 678.";
+              status.classList.add("is-error");
+            }
+            if (phoneInput) phoneInput.focus();
+            return;
+          }
+          const phone = `+61${phoneDigits}`;
+
+          button.disabled = true;
+          button.textContent = "Sending...";
 
           try {
             const response = await fetch("/api/leads", {
@@ -1253,7 +1360,7 @@
               body: JSON.stringify({
                 name: data.get("name"),
                 email: data.get("email"),
-                phone: data.get("phone"),
+                phone,
                 topic: data.get("topic"),
                 referredBy: data.get("referredBy"),
                 message: data.get("message"),

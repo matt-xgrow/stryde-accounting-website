@@ -547,9 +547,18 @@
         border-radius: 8px;
         color: var(--ink);
         background: var(--white);
-        font: 600 1rem "Poppins", Arial, sans-serif;
+        font: 400 1rem "Poppins", Arial, sans-serif;
         outline: none;
         transition: border-color 160ms ease, box-shadow 160ms ease;
+      }
+
+      .dollar {
+        font-size: 0.6em;
+        font-weight: inherit;
+        vertical-align: top;
+        position: relative;
+        top: 0.1em;
+        margin-right: 0.02em;
       }
 
       textarea {
@@ -716,7 +725,7 @@
         <div class="hero-inner">
           <div>
             <p class="eyebrow">EOFY personal tax return offer</p>
-            <h1 id="hero-title">Lodge your simple PAYG tax return from $99.</h1>
+            <h1 id="hero-title">Lodge your simple PAYG tax return from <span class="dollar">$</span>99.</h1>
             <p class="hero-copy">
               Built for employees with straightforward salary or wage income who want a
               registered tax agent to review, price-confirm and lodge their return without
