@@ -213,7 +213,7 @@
         line-height: 0.9;
       }
 
-      .price span {
+      .price-from {
         display: inline-block;
         margin-right: 10px;
         font-size: 0.26em;
@@ -221,11 +221,23 @@
         vertical-align: middle;
       }
 
+      .price-dollar {
+        margin-right: 0.02em;
+        font-size: 0.42em;
+        font-weight: 800;
+        vertical-align: top;
+        line-height: 1;
+        position: relative;
+        top: 0.12em;
+      }
+
       .price-note {
-        max-width: 310px;
-        margin: 0 0 7px;
-        color: rgba(255, 255, 255, 0.78);
-        font-size: 0.92rem;
+        max-width: 300px;
+        margin: 0 0 8px;
+        color: rgba(255, 255, 255, 0.68);
+        font-size: 0.8rem;
+        font-style: italic;
+        line-height: 1.4;
       }
 
       .hero-actions {
@@ -290,7 +302,13 @@
       }
 
       .hero-form h2 {
-        font-size: clamp(1.85rem, 3vw, 2.7rem);
+        font-size: clamp(1.45rem, 2.4vw, 1.9rem);
+      }
+
+      .form-lead {
+        margin: -8px 0 2px;
+        color: var(--muted);
+        font-size: 0.9rem;
       }
 
       .hero-form .form-row {
@@ -310,7 +328,7 @@
       }
 
       .hero-form textarea {
-        min-height: 82px;
+        min-height: 58px;
       }
 
       .phone-field {
@@ -501,7 +519,7 @@
 
       .contact-form {
         display: grid;
-        gap: 16px;
+        gap: 12px;
       }
 
       .form-row {
@@ -705,7 +723,7 @@
               the back-and-forth.
             </p>
             <div class="price-row" aria-label="Offer price">
-              <div class="price"><span>from</span> $99</div>
+              <div class="price"><span class="price-from">from</span> <span class="price-amount"><span class="price-dollar">$</span>99</span></div>
               <p class="price-note">For basic PAYG salary and wage tax returns only. We confirm your final fee before any lodgement work starts.</p>
             </div>
             <div class="hero-actions">
@@ -721,9 +739,8 @@
 
           <form class="offer-card hero-form contact-form" id="tax-return-form">
             <span class="anchor-target" id="claim-offer" aria-hidden="true"></span>
-            <p class="eyebrow">Claim the offer</p>
             <h2>Start your return today.</h2>
-            <p>Leave your details and we will confirm whether your return fits the $99 PAYG offer.</p>
+            <p class="form-lead">Leave your details and we&rsquo;ll confirm if you fit the $99 offer.</p>
             <div class="form-row">
               <label>
                 Name
@@ -766,17 +783,8 @@
             </label>
             <input name="topic" type="hidden" value="Personal tax return from $99 EOFY campaign" />
             <input name="referredBy" type="hidden" value="" />
-            <p class="form-disclaimer">
-              The $99 starting price applies to basic PAYG returns only. We review your
-              details and confirm pricing before proceeding.
-            </p>
             <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
             <button class="button button-primary" type="submit">Claim EOFY offer</button>
-            <div class="trust-row" aria-label="Trust indicators">
-              <span>Registered Tax Agent</span>
-              <span>Online Australia-wide</span>
-              <span>No lodgement before price confirmation</span>
-            </div>
           </form>
         </div>
       </section>
