@@ -8,6 +8,26 @@
       name="description"
       content="Stryde Accounting helps Australian businesses and individuals with tax, compliance, bookkeeping, payroll and clear advisory support."
     />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Stryde Accounting | Chartered Accountants & Tax Agents" />
+    <meta
+      property="og:description"
+      content="Clear accounting, tax and bookkeeping support for Australian businesses and individuals."
+    />
+    <meta property="og:url" content="https://strydeaccounting.com.au/" />
+    <meta property="og:image" content="https://strydeaccounting.com.au/assets/social-preview.jpg" />
+    <meta property="og:image:secure_url" content="https://strydeaccounting.com.au/assets/social-preview.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Stryde Accounting logo on a white background" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Stryde Accounting | Chartered Accountants & Tax Agents" />
+    <meta
+      name="twitter:description"
+      content="Clear accounting, tax and bookkeeping support for Australian businesses and individuals."
+    />
+    <meta name="twitter:image" content="https://strydeaccounting.com.au/assets/social-preview.jpg" />
     <link rel="icon" type="image/png" href="assets/mark.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -769,6 +789,112 @@
         gap: 14px;
       }
 
+      .tax-offer-modal {
+        position: fixed;
+        z-index: 60;
+        inset: 0;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 24px;
+        background: rgba(7, 23, 63, 0.62);
+        backdrop-filter: blur(10px);
+      }
+
+      .tax-offer-modal.is-open {
+        display: flex;
+      }
+
+      body.modal-open {
+        overflow: hidden;
+      }
+
+      .tax-offer-panel {
+        width: min(860px, 100%);
+        max-height: min(760px, calc(100vh - 40px));
+        overflow: auto;
+        position: relative;
+        display: grid;
+        grid-template-columns: minmax(0, 0.82fr) minmax(0, 1fr);
+        background: var(--white);
+        border: 1px solid rgba(220, 228, 238, 0.9);
+        border-radius: 8px;
+        box-shadow: 0 28px 90px rgba(4, 16, 47, 0.32);
+      }
+
+      .tax-offer-copy {
+        padding: 30px;
+        color: var(--white);
+        background: var(--navy);
+      }
+
+      .tax-offer-copy h2 {
+        color: var(--white);
+        font-size: clamp(1.95rem, 4vw, 3rem);
+      }
+
+      .tax-offer-copy p:not(.eyebrow) {
+        margin: 14px 0 0;
+        color: rgba(255, 255, 255, 0.78);
+      }
+
+      .tax-offer-price {
+        margin-top: 20px;
+        font-family: "Funnel Sans", "Poppins", Arial, sans-serif;
+        font-size: clamp(2.7rem, 6vw, 4.8rem);
+        font-weight: 800;
+        line-height: 0.95;
+      }
+
+      .tax-offer-price span {
+        display: block;
+        margin-bottom: 4px;
+        color: var(--green);
+        font-size: 0.26em;
+        text-transform: uppercase;
+      }
+
+      .tax-offer-form {
+        padding: 30px;
+      }
+
+      .tax-offer-form h3 {
+        font-size: 1.35rem;
+      }
+
+      .tax-offer-form .button {
+        width: 100%;
+      }
+
+      .tax-offer-form .form-status {
+        padding: 10px 12px;
+        border-radius: 8px;
+      }
+
+      .tax-offer-form .form-status.is-success {
+        background: var(--soft-green);
+      }
+
+      .tax-offer-form .form-status.is-error {
+        background: #fff0f0;
+      }
+
+      .modal-close {
+        width: 38px;
+        height: 38px;
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        z-index: 1;
+        border: 1px solid rgba(7, 23, 63, 0.12);
+        border-radius: 999px;
+        color: var(--navy);
+        background: var(--white);
+        font-size: 1.45rem;
+        line-height: 1;
+        cursor: pointer;
+      }
+
       .floating-cta {
         position: fixed;
         z-index: 30;
@@ -888,8 +1014,13 @@
         .team-grid,
         .split,
         .accountant-layout,
-        .contact-grid {
+        .contact-grid,
+        .tax-offer-panel {
           grid-template-columns: 1fr;
+        }
+
+        .tax-offer-panel {
+          width: min(620px, 100%);
         }
 
         .hero-grid {
@@ -942,6 +1073,20 @@
 
         .form-row {
           grid-template-columns: 1fr;
+        }
+
+        .tax-offer-modal {
+          align-items: flex-end;
+          padding: 12px;
+        }
+
+        .tax-offer-panel {
+          max-height: calc(100vh - 24px);
+        }
+
+        .tax-offer-copy,
+        .tax-offer-form {
+          padding: 24px;
         }
       }
     </style>
@@ -1379,6 +1524,68 @@
       </div>
     </footer>
 
+    <div class="tax-offer-modal" id="tax-offer-modal" role="dialog" aria-modal="true" aria-labelledby="tax-offer-title" aria-hidden="true">
+      <div class="tax-offer-panel">
+        <button class="modal-close" type="button" aria-label="Close offer">&times;</button>
+        <div class="tax-offer-copy">
+          <p class="eyebrow">EOFY personal tax return offer</p>
+          <h2 id="tax-offer-title">Personal tax returns from <span class="dollar">$</span>99.</h2>
+          <p>For basic PAYG salary and wage returns. Stryde confirms your final fee before any lodgement work starts.</p>
+          <div class="tax-offer-price"><span>from</span><span class="dollar">$</span>99</div>
+        </div>
+        <form class="tax-offer-form contact-form" id="tax-offer-form">
+          <h3>Claim your offer</h3>
+          <div class="form-row">
+            <label>
+              Name
+              <input name="name" autocomplete="name" required />
+            </label>
+            <label>
+              Email
+              <input name="email" type="email" autocomplete="email" required />
+            </label>
+          </div>
+          <label>
+            Phone
+            <span class="phone-field">
+              <span class="phone-prefix" aria-hidden="true">+61</span>
+              <input
+                name="phone"
+                type="tel"
+                inputmode="numeric"
+                autocomplete="tel-national"
+                placeholder="4XX XXX XXX"
+                maxlength="11"
+                pattern="4\d{2} ?\d{3} ?\d{3}"
+                title="Enter an Australian mobile number starting with 4, e.g. 412 345 678"
+                required
+              />
+            </span>
+          </label>
+          <label>
+            Which best describes your tax return?
+            <select name="taxSituation" required>
+              <option>Salary (TFN Wages)</option>
+              <option>Abn (Sole Trader)</option>
+              <option>Both (TFN + ABN)</option>
+              <option>Not sure</option>
+            </select>
+          </label>
+          <label>
+            Anything we should know?
+            <textarea name="notes" placeholder="Example: I have one PAYG job and standard work deductions."></textarea>
+          </label>
+          <input name="topic" type="hidden" value="Tax Return" />
+          <input name="referredBy" type="hidden" value="" />
+          <p class="form-note">
+            The $99 starting price applies to basic PAYG returns only. We review your details and confirm pricing before proceeding.
+          </p>
+          <p class="form-status" id="tax-offer-status" role="status" aria-live="polite"></p>
+          <button class="button button-primary" type="submit">Claim EOFY offer</button>
+        </form>
+      </div>
+    </div>
+
     <script>
       // Mobile hamburger menu toggle.
       (function () {
@@ -1489,6 +1696,106 @@
             button.textContent = originalText;
           }
         });
+      });
+
+      const taxOfferModal = document.querySelector("#tax-offer-modal");
+      const taxOfferForm = document.querySelector("#tax-offer-form");
+      const taxOfferStatus = document.querySelector("#tax-offer-status");
+      const taxOfferClose = document.querySelector(".modal-close");
+      const taxOfferDismissedKey = "strydeTaxOfferDismissed";
+
+      function openTaxOffer() {
+        if (sessionStorage.getItem(taxOfferDismissedKey)) return;
+        taxOfferModal.classList.add("is-open");
+        taxOfferModal.setAttribute("aria-hidden", "false");
+        document.body.classList.add("modal-open");
+        sessionStorage.setItem(taxOfferDismissedKey, "seen");
+      }
+
+      function closeTaxOffer() {
+        taxOfferModal.classList.remove("is-open");
+        taxOfferModal.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("modal-open");
+      }
+
+      function handleOfferScroll() {
+        if (window.scrollY > 360) {
+          openTaxOffer();
+          window.removeEventListener("scroll", handleOfferScroll);
+        }
+      }
+
+      window.addEventListener("scroll", handleOfferScroll, { passive: true });
+      taxOfferClose.addEventListener("click", closeTaxOffer);
+      taxOfferModal.addEventListener("click", (event) => {
+        if (event.target === taxOfferModal) closeTaxOffer();
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && taxOfferModal.classList.contains("is-open")) {
+          closeTaxOffer();
+        }
+      });
+
+      const taxOfferPhoneInput = taxOfferForm.querySelector('input[name="phone"]');
+      taxOfferPhoneInput.addEventListener("input", () => {
+        taxOfferPhoneInput.value = formatAustralianMobile(australianMobileDigits(taxOfferPhoneInput.value));
+      });
+
+      taxOfferForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const data = new FormData(taxOfferForm);
+        const button = taxOfferForm.querySelector('button[type="submit"]');
+        const originalText = button.textContent;
+        const notes = data.get("notes") || "";
+        const taxSituation = data.get("taxSituation") || "";
+
+        taxOfferStatus.textContent = "";
+        taxOfferStatus.className = "form-status";
+
+        const phoneDigits = australianMobileDigits(taxOfferPhoneInput.value);
+        if (!/^4\d{8}$/.test(phoneDigits)) {
+          taxOfferStatus.textContent =
+            "Please enter a valid Australian mobile number, e.g. 412 345 678.";
+          taxOfferStatus.classList.add("is-error");
+          taxOfferPhoneInput.focus();
+          return;
+        }
+        const phone = `+61${phoneDigits}`;
+
+        button.disabled = true;
+        button.textContent = "Sending...";
+
+        try {
+          const response = await fetch("/api/leads", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              name: data.get("name"),
+              email: data.get("email"),
+              phone,
+              topic: data.get("topic"),
+              taxSituation,
+              referredBy: data.get("referredBy"),
+              message: `Campaign: EOFY personal tax returns from $99\nTax situation: ${taxSituation}\nNotes: ${notes}`.trim(),
+              source: "Website - Personal Tax Form",
+            }),
+          });
+          const result = await response.json();
+
+          if (!response.ok || !result.ok) {
+            throw new Error(result.message || "Unable to send enquiry.");
+          }
+
+          taxOfferForm.reset();
+          taxOfferStatus.textContent = "Thanks. Your details have been sent to Stryde Accounting.";
+          taxOfferStatus.classList.add("is-success");
+        } catch (error) {
+          taxOfferStatus.textContent = error.message || "We could not send your enquiry. Please try again.";
+          taxOfferStatus.classList.add("is-error");
+        } finally {
+          button.disabled = false;
+          button.textContent = originalText;
+        }
       });
     </script>
   </body>
