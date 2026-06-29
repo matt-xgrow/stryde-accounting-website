@@ -81,6 +81,19 @@
         flex: 0 0 auto;
       }
 
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 26px;
+        color: #2c3851;
+        font-size: 0.92rem;
+        font-weight: 600;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+      }
+
       .nav-actions {
         display: flex;
         align-items: center;
@@ -543,6 +556,10 @@
           width: min(100% - 28px, 1160px);
         }
 
+        .nav-links {
+          display: none;
+        }
+
         .nav-actions .button-outline {
           display: none;
         }
@@ -623,8 +640,15 @@
         <a class="brand" href="/" aria-label="Stryde Accounting home">
           <img src="/assets/logo-full.png" alt="Stryde Accounting" />
         </a>
+        <div class="nav-links">
+          <a href="/#services">Services</a>
+          <a href="/personal-tax-return/">Personal tax returns</a>
+          <a href="/#process">Process</a>
+          <a href="/#accountant">Team</a>
+          <a href="/#contact">Contact</a>
+        </div>
         <div class="nav-actions">
-          <a class="button button-outline" href="/">Main website</a>
+          <a class="button button-outline" href="tel:+61449655904">Call now</a>
           <a class="button button-primary" href="#claim-offer">Claim offer</a>
         </div>
       </nav>
