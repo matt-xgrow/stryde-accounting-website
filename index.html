@@ -38,6 +38,11 @@
         scroll-behavior: smooth;
       }
 
+      section[id],
+      .hero-form-card {
+        scroll-margin-top: 90px;
+      }
+
       body {
         margin: 0;
         color: var(--ink);
@@ -139,11 +144,11 @@
       }
 
       .hero {
-        min-height: clamp(520px, calc(100vh - 120px), 620px);
         margin-top: 76px;
+        padding: 46px 0;
         color: var(--white);
         background:
-          linear-gradient(90deg, rgba(7, 23, 63, 0.96) 0%, rgba(7, 23, 63, 0.84) 46%, rgba(7, 23, 63, 0.42) 100%),
+          linear-gradient(90deg, rgba(7, 23, 63, 0.96) 0%, rgba(7, 23, 63, 0.88) 56%, rgba(7, 23, 63, 0.62) 100%),
           url("assets/accounting-desk.jpg") center right / cover no-repeat;
         display: flex;
         align-items: center;
@@ -155,9 +160,78 @@
         margin: 0 auto;
       }
 
+      .hero-grid {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 0.86fr;
+        gap: 44px;
+        align-items: center;
+      }
+
       .hero-content {
-        width: min(680px, 100%);
-        padding: 36px 0 30px;
+        width: 100%;
+        max-width: 600px;
+        padding: 0;
+      }
+
+      .hero-form-card {
+        padding: 24px;
+        border-radius: 12px;
+        color: var(--ink);
+        background: var(--white);
+        box-shadow: var(--shadow);
+      }
+
+      .hero-form-card h2 {
+        font-size: 1.45rem;
+        line-height: 1.1;
+      }
+
+      .form-note {
+        margin: 8px 0 18px;
+        color: var(--muted);
+        font-size: 0.9rem;
+        font-weight: 500;
+        line-height: 1.45;
+      }
+
+      .contact-form .form-note {
+        margin-top: 0;
+      }
+
+      .hero-form-card .contact-form {
+        gap: 12px;
+      }
+
+      .hero-form-card textarea {
+        min-height: 84px;
+      }
+
+      .form-status {
+        margin: 0;
+        font-size: 0.88rem;
+        font-weight: 600;
+        line-height: 1.4;
+      }
+
+      .form-status:empty {
+        display: none;
+      }
+
+      .form-status.is-success {
+        color: #0a7d4d;
+      }
+
+      .form-status.is-error {
+        color: #c0392b;
+      }
+
+      .form-reassurance {
+        margin: 4px 0 0;
+        color: var(--muted);
+        font-size: 0.82rem;
+        font-weight: 500;
+        text-align: center;
       }
 
       .eyebrow {
@@ -569,6 +643,27 @@
         gap: 14px;
       }
 
+      .floating-cta {
+        position: fixed;
+        z-index: 30;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: none;
+        gap: 10px;
+        padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 0px));
+        background: rgba(255, 255, 255, 0.97);
+        border-top: 1px solid var(--line);
+        box-shadow: 0 -10px 30px rgba(7, 23, 63, 0.12);
+        backdrop-filter: blur(12px);
+      }
+
+      .floating-cta .button {
+        flex: 1;
+        width: auto;
+        min-height: 52px;
+      }
+
       .site-footer {
         padding: 34px 0;
         color: rgba(255, 255, 255, 0.72);
@@ -601,17 +696,27 @@
         }
 
         .hero {
-          min-height: auto;
           margin-top: 70px;
+          padding: 32px 0 36px;
           background:
-            linear-gradient(90deg, rgba(7, 23, 63, 0.97) 0%, rgba(7, 23, 63, 0.86) 72%, rgba(7, 23, 63, 0.66) 100%),
-            url("assets/accounting-desk.jpg") center right / cover no-repeat;
+            linear-gradient(180deg, rgba(7, 23, 63, 0.97) 0%, rgba(7, 23, 63, 0.92) 100%),
+            url("assets/accounting-desk.jpg") center / cover no-repeat;
         }
 
         .hero-content {
-          padding: 68px 0 52px;
+          max-width: 100%;
+          padding: 0;
         }
 
+        .floating-cta {
+          display: flex;
+        }
+
+        body {
+          padding-bottom: 80px;
+        }
+
+        .hero-grid,
         .trust-grid,
         .services-grid,
         .process-grid,
@@ -621,6 +726,10 @@
         .accountant-layout,
         .contact-grid {
           grid-template-columns: 1fr;
+        }
+
+        .hero-grid {
+          gap: 28px;
         }
 
         .trust-item,
@@ -699,21 +808,62 @@
     <main id="top">
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-inner">
-          <div class="hero-content">
-            <p class="eyebrow">Chartered Accountants &amp; Tax Agents</p>
-            <h1 id="hero-title">Clear accounting for confident next steps.</h1>
-            <p class="hero-copy">
-              Stryde Accounting helps Australian businesses and individuals stay compliant, understand their numbers and make confident financial decisions without the jargon.
-            </p>
-            <div class="hero-actions">
-              <a class="button button-primary" href="https://api.leadconnectorhq.com/widget/bookings/strategy-call-stryde" target="_blank" rel="noopener">Book a free consultation</a>
-              <a class="button button-secondary" href="tel:+61449655904">Call +61 449 655 904</a>
+          <div class="hero-grid">
+            <div class="hero-content">
+              <p class="eyebrow">Chartered Accountants &amp; Tax Agents</p>
+              <h1 id="hero-title">Clear accounting for confident next steps.</h1>
+              <p class="hero-copy">
+                Stryde Accounting helps Australian businesses and individuals stay compliant, understand their numbers and make confident financial decisions without the jargon.
+              </p>
+              <div class="hero-actions">
+                <a class="button button-primary" href="https://api.leadconnectorhq.com/widget/bookings/strategy-call-stryde" target="_blank" rel="noopener">Book a free consultation</a>
+                <a class="button button-secondary" href="tel:+61449655904">Call +61 449 655 904</a>
+              </div>
+              <ul class="hero-points" aria-label="Stryde Accounting credentials">
+                <li>Registered Tax Agent No. 26363623</li>
+                <li>ABN 50 697 914 739</li>
+                <li>Sydney based, Australia wide</li>
+              </ul>
             </div>
-            <ul class="hero-points" aria-label="Stryde Accounting credentials">
-              <li>Registered Tax Agent No. 26363623</li>
-              <li>ABN 50 697 914 739</li>
-              <li>Sydney based, Australia wide</li>
-            </ul>
+
+            <div class="hero-form-card" id="enquiry">
+              <h2>Send an enquiry</h2>
+              <p class="form-note">Tell us what you need and we&rsquo;ll get back to you within 1 business day.</p>
+              <form class="contact-form lead-form" id="hero-form">
+                <div class="form-row">
+                  <label>
+                    Name
+                    <input name="name" autocomplete="name" required />
+                  </label>
+                  <label>
+                    Email
+                    <input name="email" type="email" autocomplete="email" required />
+                  </label>
+                </div>
+                <label>
+                  Phone
+                  <input name="phone" type="tel" autocomplete="tel" required />
+                </label>
+                <label>
+                  What do you need help with?
+                  <select name="topic">
+                    <option>Tax return or tax planning</option>
+                    <option>BAS, GST or bookkeeping</option>
+                    <option>Business accounting</option>
+                    <option>Payroll or super</option>
+                    <option>Xero setup or cleanup</option>
+                    <option>General advice</option>
+                  </select>
+                </label>
+                <label>
+                  Message
+                  <textarea name="message" placeholder="Tell us a little about your business or question."></textarea>
+                </label>
+                <button class="button button-primary" type="submit">Send enquiry</button>
+                <p class="form-status" role="status" aria-live="polite"></p>
+                <p class="form-reassurance">We respond to every enquiry within 1 business day.</p>
+              </form>
+            </div>
           </div>
         </div>
       </section>
@@ -962,7 +1112,8 @@
             </ul>
           </div>
 
-          <form class="contact-panel contact-form" id="contact-form">
+          <form class="contact-panel contact-form lead-form" id="contact-form">
+            <p class="form-note">Send your details below and we&rsquo;ll get back to you within 1 business day.</p>
             <div class="form-row">
               <label>
                 Name
@@ -1002,10 +1153,17 @@
               <textarea name="message" placeholder="Tell us a little about your business or question."></textarea>
             </label>
             <button class="button button-primary" type="submit">Send enquiry</button>
+            <p class="form-status" role="status" aria-live="polite"></p>
+            <p class="form-reassurance">We respond to every enquiry within 1 business day.</p>
           </form>
         </div>
       </section>
     </main>
+
+    <div class="floating-cta" aria-label="Quick contact options">
+      <a class="button button-outline" href="tel:+61449655904">Call</a>
+      <a class="button button-primary" href="#enquiry">Send enquiry</a>
+    </div>
 
     <footer class="site-footer">
       <div class="footer-inner">
@@ -1015,44 +1173,57 @@
     </footer>
 
     <script>
-      const form = document.querySelector("#contact-form");
+      document.querySelectorAll(".lead-form").forEach((form) => {
+        form.addEventListener("submit", async (event) => {
+          event.preventDefault();
+          const data = new FormData(form);
+          const button = form.querySelector('button[type="submit"]');
+          const status = form.querySelector(".form-status");
+          const originalText = button.textContent;
 
-      form.addEventListener("submit", async (event) => {
-        event.preventDefault();
-        const data = new FormData(form);
-        const button = form.querySelector('button[type="submit"]');
-        const originalText = button.textContent;
-
-        button.disabled = true;
-        button.textContent = "Sending...";
-
-        try {
-          const response = await fetch("/api/leads", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              name: data.get("name"),
-              email: data.get("email"),
-              phone: data.get("phone"),
-              topic: data.get("topic"),
-              referredBy: data.get("referredBy"),
-              message: data.get("message"),
-            }),
-          });
-          const result = await response.json();
-
-          if (!response.ok || !result.ok) {
-            throw new Error(result.message || "Unable to send enquiry.");
+          button.disabled = true;
+          button.textContent = "Sending...";
+          if (status) {
+            status.textContent = "";
+            status.className = "form-status";
           }
 
-          form.reset();
-          alert("Thanks. Your enquiry has been sent to Stryde Accounting.");
-        } catch (error) {
-          alert(error.message || "We could not send your enquiry. Please try again.");
-        } finally {
-          button.disabled = false;
-          button.textContent = originalText;
-        }
+          try {
+            const response = await fetch("/api/leads", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                name: data.get("name"),
+                email: data.get("email"),
+                phone: data.get("phone"),
+                topic: data.get("topic"),
+                referredBy: data.get("referredBy"),
+                message: data.get("message"),
+              }),
+            });
+            const result = await response.json();
+
+            if (!response.ok || !result.ok) {
+              throw new Error(result.message || "Unable to send enquiry.");
+            }
+
+            form.reset();
+            if (status) {
+              status.textContent =
+                "Thanks! Your enquiry has been sent. We'll be in touch within 1 business day.";
+              status.classList.add("is-success");
+            }
+          } catch (error) {
+            if (status) {
+              status.textContent =
+                error.message || "We could not send your enquiry. Please try again.";
+              status.classList.add("is-error");
+            }
+          } finally {
+            button.disabled = false;
+            button.textContent = originalText;
+          }
+        });
       });
     </script>
   </body>
