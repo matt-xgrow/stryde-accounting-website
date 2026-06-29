@@ -953,6 +953,7 @@
               taxSituation,
               referredBy: data.get("referredBy"),
               message: `Campaign: EOFY personal tax returns from $99\nTax situation: ${taxSituation}\nNotes: ${notes}`.trim(),
+              source: "Website - Personal Tax Form",
             }),
           });
           const result = await response.json();

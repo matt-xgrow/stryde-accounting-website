@@ -1,6 +1,11 @@
 const GHL_API_BASE = "https://services.leadconnectorhq.com";
 const GHL_API_VERSION = "2021-07-28";
-const LEAD_SOURCE = "Website";
+const DEFAULT_LEAD_SOURCE = "Website";
+const ALLOWED_LEAD_SOURCES = new Set([
+  "Website - Home Page Form",
+  "Website - Personal Tax Form",
+  "Website - Business Form",
+]);
 const REFERRED_BY_OPTIONS = new Set(["", "Tejas Dhami", "Matt Bessa", "Other"]);
 const LEGACY_REFERRED_BY_VALUES = new Map([
   ["Matt", "Matt Bessa"],
@@ -100,6 +105,10 @@ function parseSubmission(body) {
   const rawReferredBy = cleanString(body.referredBy);
   const referredBy =
     LEGACY_REFERRED_BY_VALUES.get(rawReferredBy) || rawReferredBy;
+  const rawSource = cleanString(body.source);
+  const source = ALLOWED_LEAD_SOURCES.has(rawSource)
+    ? rawSource
+    : DEFAULT_LEAD_SOURCE;
 
   if (!name) {
     throw new Error("Name is required.");
@@ -121,7 +130,7 @@ function parseSubmission(body) {
     throw new Error("Invalid referred by value.");
   }
 
-  return { name, email, phone, topic, message, taxSituation, referredBy };
+  return { name, email, phone, topic, message, taxSituation, referredBy, source };
 }
 
 module.exports = async function handler(req, res) {
@@ -171,7 +180,7 @@ module.exports = async function handler(req, res) {
         name: submission.name,
         email: submission.email,
         phone: submission.phone,
-        source: LEAD_SOURCE,
+        source: submission.source,
         tags: ["website-lead"],
         customFields,
       }),
@@ -191,7 +200,7 @@ module.exports = async function handler(req, res) {
         pipelineStageId: config.pipelineStageId,
         name: submission.name,
         status: "open",
-        source: LEAD_SOURCE,
+        source: submission.source,
       }),
     });
 
