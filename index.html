@@ -310,6 +310,50 @@
         background: var(--green);
       }
 
+      .offer-band {
+        padding: 26px 0;
+        background: var(--green);
+      }
+
+      .offer-band-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 22px 36px;
+        flex-wrap: wrap;
+      }
+
+      .offer-band .eyebrow {
+        margin: 0 0 6px;
+        color: rgba(7, 23, 63, 0.7);
+      }
+
+      .offer-band h2 {
+        color: var(--navy);
+        font-size: clamp(1.7rem, 3.4vw, 2.6rem);
+      }
+
+      .offer-band h2 span {
+        text-decoration: underline;
+        text-decoration-color: rgba(7, 23, 63, 0.35);
+        text-underline-offset: 5px;
+      }
+
+      .offer-band p {
+        max-width: 640px;
+        margin: 8px 0 0;
+        color: rgba(7, 23, 63, 0.82);
+        font-size: 1rem;
+        font-weight: 500;
+      }
+
+      .offer-band .button {
+        flex: 0 0 auto;
+        color: var(--white);
+        background: var(--navy);
+        box-shadow: 0 14px 30px rgba(7, 23, 63, 0.24);
+      }
+
       .trust-strip {
         background: var(--white);
         border-bottom: 1px solid var(--line);
@@ -866,6 +910,19 @@
               </form>
             </div>
           </div>
+        </div>
+      </section>
+
+      <section class="offer-band" aria-labelledby="offer-band-title">
+        <div class="section-inner offer-band-inner">
+          <div>
+            <p class="eyebrow">EOFY personal tax offer</p>
+            <h2 id="offer-band-title">Tax Returns from <span>$99</span></h2>
+            <p>
+              Simple PAYG salary &amp; wage returns, reviewed and lodged by a registered tax agent. Your final fee is always confirmed before any work starts.
+            </p>
+          </div>
+          <a class="button button-primary" href="/personal-tax-return/">Claim the offer</a>
         </div>
       </section>
 

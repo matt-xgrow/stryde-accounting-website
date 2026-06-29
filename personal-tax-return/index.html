@@ -313,6 +313,45 @@
         min-height: 82px;
       }
 
+      .phone-field {
+        display: flex;
+        align-items: stretch;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--white);
+        transition: border-color 160ms ease, box-shadow 160ms ease;
+      }
+
+      .phone-field:focus-within {
+        border-color: rgba(27, 224, 136, 0.9);
+        box-shadow: 0 0 0 4px rgba(27, 224, 136, 0.14);
+      }
+
+      .phone-prefix {
+        display: inline-flex;
+        align-items: center;
+        padding: 0 12px;
+        color: var(--navy);
+        font-weight: 700;
+        white-space: nowrap;
+        background: var(--soft);
+        border-right: 1px solid var(--line);
+      }
+
+      .phone-field input {
+        flex: 1;
+        min-width: 0;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+      }
+
+      .phone-field input:focus {
+        border: 0;
+        box-shadow: none;
+      }
+
       .trust-row {
         margin-top: 14px;
         display: flex;
@@ -697,7 +736,20 @@
             </div>
             <label>
               Phone
-              <input name="phone" type="tel" autocomplete="tel" required />
+              <span class="phone-field">
+                <span class="phone-prefix" aria-hidden="true">+61</span>
+                <input
+                  name="phone"
+                  type="tel"
+                  inputmode="numeric"
+                  autocomplete="tel-national"
+                  placeholder="4XX XXX XXX"
+                  maxlength="11"
+                  pattern="4\d{2} ?\d{3} ?\d{3}"
+                  title="Enter an Australian mobile number starting with 4, e.g. 412 345 678"
+                  required
+                />
+              </span>
             </label>
             <label>
               Which best describes your tax return?
@@ -823,6 +875,30 @@
     <script>
       const form = document.querySelector("#tax-return-form");
       const formMessage = document.querySelector("#form-message");
+      const phoneInput = form.querySelector('input[name="phone"]');
+
+      // Keep the phone field to an Australian mobile (4XX XXX XXX) and
+      // format it as the user types. The +61 prefix is shown beside the input.
+      function australianMobileDigits(value) {
+        let digits = String(value).replace(/\D/g, "");
+        if (digits.startsWith("61")) digits = digits.slice(2);
+        if (digits.startsWith("0")) digits = digits.slice(1);
+        return digits.slice(0, 9);
+      }
+
+      function formatAustralianMobile(digits) {
+        if (digits.length > 6) {
+          return `${digits.slice(0, 3)} ${digits.slice(3, 6)} ${digits.slice(6)}`;
+        }
+        if (digits.length > 3) {
+          return `${digits.slice(0, 3)} ${digits.slice(3)}`;
+        }
+        return digits;
+      }
+
+      phoneInput.addEventListener("input", () => {
+        phoneInput.value = formatAustralianMobile(australianMobileDigits(phoneInput.value));
+      });
 
       form.addEventListener("submit", async (event) => {
         event.preventDefault();
@@ -834,6 +910,17 @@
 
         formMessage.className = "form-message";
         formMessage.textContent = "";
+
+        const phoneDigits = australianMobileDigits(phoneInput.value);
+        if (!/^4\d{8}$/.test(phoneDigits)) {
+          formMessage.className = "form-message is-error";
+          formMessage.textContent =
+            "Please enter a valid Australian mobile number, e.g. 412 345 678.";
+          phoneInput.focus();
+          return;
+        }
+        const phone = `+61${phoneDigits}`;
+
         button.disabled = true;
         button.textContent = "Sending...";
 
@@ -844,7 +931,7 @@
             body: JSON.stringify({
               name: data.get("name"),
               email: data.get("email"),
-              phone: data.get("phone"),
+              phone,
               topic: data.get("topic"),
               taxSituation,
               referredBy: data.get("referredBy"),
