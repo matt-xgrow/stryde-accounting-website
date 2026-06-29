@@ -38,6 +38,7 @@
       }
 
       section[id],
+      .hero-form-card,
       .anchor {
         scroll-margin-top: 90px;
       }
@@ -164,8 +165,135 @@
         margin: 0 auto;
       }
 
+      .hero-grid {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr 0.84fr;
+        gap: 44px;
+        align-items: center;
+      }
+
       .hero-content {
-        width: min(700px, 100%);
+        width: 100%;
+        max-width: 600px;
+      }
+
+      .hero-form-card {
+        padding: 24px;
+        border-radius: 12px;
+        color: var(--ink);
+        background: var(--white);
+        box-shadow: var(--shadow);
+      }
+
+      .hero-form-card h2 {
+        font-size: 1.45rem;
+        line-height: 1.1;
+      }
+
+      .form-note {
+        margin: 8px 0 18px;
+        color: var(--muted);
+        font-size: 0.9rem;
+        font-weight: 500;
+        line-height: 1.45;
+      }
+
+      .contact-form {
+        display: grid;
+        gap: 12px;
+      }
+
+      label {
+        display: grid;
+        gap: 8px;
+        color: var(--navy);
+        font-size: 0.86rem;
+        font-weight: 800;
+      }
+
+      input,
+      textarea,
+      select {
+        width: 100%;
+        min-height: 48px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 12px 13px;
+        color: var(--ink);
+        background: var(--white);
+        font: inherit;
+        font-weight: 400;
+      }
+
+      textarea {
+        min-height: 84px;
+        resize: vertical;
+      }
+
+      .form-row {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+      }
+
+      .phone-field {
+        display: flex;
+        align-items: stretch;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--white);
+      }
+
+      .phone-field:focus-within {
+        border-color: rgba(27, 224, 136, 0.9);
+        box-shadow: 0 0 0 3px rgba(27, 224, 136, 0.16);
+      }
+
+      .phone-prefix {
+        display: inline-flex;
+        align-items: center;
+        padding: 0 12px;
+        color: var(--navy);
+        font-weight: 700;
+        white-space: nowrap;
+        background: var(--soft);
+        border-right: 1px solid var(--line);
+      }
+
+      .phone-field input {
+        flex: 1;
+        min-width: 0;
+        border: 0;
+        border-radius: 0;
+      }
+
+      .form-status {
+        margin: 0;
+        font-size: 0.88rem;
+        font-weight: 600;
+        line-height: 1.4;
+      }
+
+      .form-status:empty {
+        display: none;
+      }
+
+      .form-status.is-success {
+        color: #0a7d4d;
+      }
+
+      .form-status.is-error {
+        color: #c0392b;
+      }
+
+      .form-reassurance {
+        margin: 4px 0 0;
+        color: var(--muted);
+        font-size: 0.82rem;
+        font-weight: 500;
+        text-align: center;
       }
 
       .eyebrow {
@@ -489,10 +617,15 @@
           padding-bottom: 80px;
         }
 
+        .hero-grid,
         .services-grid,
         .process-grid,
         .split {
           grid-template-columns: 1fr;
+        }
+
+        .hero-grid {
+          gap: 28px;
         }
 
         .split.reverse .image-frame {
@@ -526,6 +659,10 @@
           display: grid;
         }
 
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+
         section {
           padding: 60px 0;
         }
@@ -555,21 +692,76 @@
     <main>
       <section class="hero" aria-labelledby="hero-title">
         <div class="hero-inner">
-          <div class="hero-content">
-            <p class="eyebrow">Business accounting</p>
-            <h1 id="hero-title">Accounting that keeps your business compliant and in control.</h1>
-            <p class="hero-copy">
-              From setting up your company or trust to BAS, tax, bookkeeping and payroll, Stryde gives Australian business owners clear numbers and dependable compliance, without the jargon.
-            </p>
-            <div class="hero-actions">
-              <a class="button button-primary" href="https://api.leadconnectorhq.com/widget/bookings/strategy-call-stryde" target="_blank" rel="noopener">Book a free consultation</a>
-              <a class="button button-secondary" href="tel:+61449655904">Call +61 449 655 904</a>
+          <div class="hero-grid">
+            <div class="hero-content">
+              <p class="eyebrow">Business accounting</p>
+              <h1 id="hero-title">Accounting that keeps your business compliant and in control.</h1>
+              <p class="hero-copy">
+                From setting up your company or trust to BAS, tax, bookkeeping and payroll, Stryde gives Australian business owners clear numbers and dependable compliance, without the jargon.
+              </p>
+              <div class="hero-actions">
+                <a class="button button-primary" href="https://api.leadconnectorhq.com/widget/bookings/strategy-call-stryde" target="_blank" rel="noopener">Book a free consultation</a>
+                <a class="button button-secondary" href="tel:+61449655904">Call +61 449 655 904</a>
+              </div>
+              <ul class="hero-points" aria-label="Key points">
+                <li>Companies, trusts &amp; sole traders</li>
+                <li>Registered Tax Agent No. 26363623</li>
+                <li>Sydney &amp; Gold Coast, Australia wide</li>
+              </ul>
             </div>
-            <ul class="hero-points" aria-label="Key points">
-              <li>Companies, trusts &amp; sole traders</li>
-              <li>Registered Tax Agent No. 26363623</li>
-              <li>Sydney &amp; Gold Coast, Australia wide</li>
-            </ul>
+
+            <div class="hero-form-card" id="enquiry">
+              <h2>Send an enquiry</h2>
+              <p class="form-note">Tell us about your business and we&rsquo;ll get back to you within 1 business day.</p>
+              <form class="contact-form lead-form" id="business-form">
+                <div class="form-row">
+                  <label>
+                    Name
+                    <input name="name" autocomplete="name" required />
+                  </label>
+                  <label>
+                    Email
+                    <input name="email" type="email" autocomplete="email" required />
+                  </label>
+                </div>
+                <label>
+                  Phone
+                  <span class="phone-field">
+                    <span class="phone-prefix" aria-hidden="true">+61</span>
+                    <input
+                      name="phone"
+                      type="tel"
+                      inputmode="numeric"
+                      autocomplete="tel-national"
+                      placeholder="4XX XXX XXX"
+                      maxlength="11"
+                      pattern="4\d{2} ?\d{3} ?\d{3}"
+                      title="Enter an Australian mobile number starting with 4, e.g. 412 345 678"
+                      required
+                    />
+                  </span>
+                </label>
+                <label>
+                  What do you need help with?
+                  <select name="topic">
+                    <option>Business accounting</option>
+                    <option>Company or trust setup</option>
+                    <option>BAS, GST or bookkeeping</option>
+                    <option>Company tax return</option>
+                    <option>Payroll or super</option>
+                    <option>General advice</option>
+                  </select>
+                </label>
+                <label>
+                  Message
+                  <textarea name="message" placeholder="Tell us a little about your business or question."></textarea>
+                </label>
+                <input name="referredBy" type="hidden" value="" />
+                <button class="button button-primary" type="submit">Send enquiry</button>
+                <p class="form-status" role="status" aria-live="polite"></p>
+                <p class="form-reassurance">We respond to every enquiry within 1 business day.</p>
+              </form>
+            </div>
           </div>
         </div>
       </section>
@@ -748,7 +940,7 @@
 
     <div class="floating-cta" aria-label="Quick contact options">
       <a class="button button-outline" href="tel:+61449655904">Call</a>
-      <a class="button button-primary" href="https://api.leadconnectorhq.com/widget/bookings/strategy-call-stryde" target="_blank" rel="noopener">Book a consultation</a>
+      <a class="button button-primary" href="#enquiry">Send enquiry</a>
     </div>
 
     <footer class="site-footer">
@@ -757,5 +949,99 @@
         <div>Registered Tax Agent No. 26363623 | ABN 50 697 914 739</div>
       </div>
     </footer>
+
+    <script>
+      // Keep phone fields to an Australian mobile (4XX XXX XXX) and format
+      // them as the user types. The +61 prefix is shown beside the input.
+      function australianMobileDigits(value) {
+        let digits = String(value).replace(/\D/g, "");
+        if (digits.startsWith("61")) digits = digits.slice(2);
+        if (digits.startsWith("0")) digits = digits.slice(1);
+        return digits.slice(0, 9);
+      }
+
+      function formatAustralianMobile(digits) {
+        if (digits.length > 6) {
+          return `${digits.slice(0, 3)} ${digits.slice(3, 6)} ${digits.slice(6)}`;
+        }
+        if (digits.length > 3) {
+          return `${digits.slice(0, 3)} ${digits.slice(3)}`;
+        }
+        return digits;
+      }
+
+      document.querySelectorAll(".lead-form").forEach((form) => {
+        const phoneInput = form.querySelector('input[name="phone"]');
+        if (phoneInput) {
+          phoneInput.addEventListener("input", () => {
+            phoneInput.value = formatAustralianMobile(australianMobileDigits(phoneInput.value));
+          });
+        }
+
+        form.addEventListener("submit", async (event) => {
+          event.preventDefault();
+          const data = new FormData(form);
+          const button = form.querySelector('button[type="submit"]');
+          const status = form.querySelector(".form-status");
+          const originalText = button.textContent;
+
+          if (status) {
+            status.textContent = "";
+            status.className = "form-status";
+          }
+
+          const phoneDigits = australianMobileDigits(phoneInput ? phoneInput.value : data.get("phone"));
+          if (!/^4\d{8}$/.test(phoneDigits)) {
+            if (status) {
+              status.textContent =
+                "Please enter a valid Australian mobile number, e.g. 412 345 678.";
+              status.classList.add("is-error");
+            }
+            if (phoneInput) phoneInput.focus();
+            return;
+          }
+          const phone = `+61${phoneDigits}`;
+
+          button.disabled = true;
+          button.textContent = "Sending...";
+
+          try {
+            const response = await fetch("/api/leads", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                name: data.get("name"),
+                email: data.get("email"),
+                phone,
+                topic: data.get("topic"),
+                referredBy: data.get("referredBy"),
+                message: data.get("message"),
+              }),
+            });
+            const result = await response.json();
+
+            if (!response.ok || !result.ok) {
+              throw new Error(result.message || "Unable to send enquiry.");
+            }
+
+            form.reset();
+            if (status) {
+              status.textContent =
+                "Thanks! Your enquiry has been sent. We'll be in touch within 1 business day.";
+              status.classList.add("is-success");
+            }
+          } catch (error) {
+            if (status) {
+              status.textContent =
+                error.message || "We could not send your enquiry. Please try again.";
+              status.classList.add("is-error");
+            }
+          } finally {
+            button.disabled = false;
+            button.textContent = originalText;
+          }
+        });
+      });
+    </script>
   </body>
 </html>
