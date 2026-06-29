@@ -16,6 +16,7 @@ function getConfig() {
     "GHL_REFERRED_BY_FIELD_ID",
     "GHL_ENQUIRY_TOPIC_FIELD_ID",
     "GHL_ENQUIRY_MESSAGE_FIELD_ID",
+    "GHL_TAX_SITUATION_FIELD_ID",
   ];
   const missing = required.filter((key) => !process.env[key]);
 
@@ -31,6 +32,7 @@ function getConfig() {
     referredByFieldId: process.env.GHL_REFERRED_BY_FIELD_ID,
     enquiryTopicFieldId: process.env.GHL_ENQUIRY_TOPIC_FIELD_ID,
     enquiryMessageFieldId: process.env.GHL_ENQUIRY_MESSAGE_FIELD_ID,
+    taxSituationFieldId: process.env.GHL_TAX_SITUATION_FIELD_ID,
   };
 }
 
@@ -94,6 +96,7 @@ function parseSubmission(body) {
   const phone = cleanString(body.phone);
   const topic = cleanString(body.topic);
   const message = cleanString(body.message);
+  const taxSituation = cleanString(body.taxSituation);
   const rawReferredBy = cleanString(body.referredBy);
   const referredBy =
     LEGACY_REFERRED_BY_VALUES.get(rawReferredBy) || rawReferredBy;
@@ -118,7 +121,7 @@ function parseSubmission(body) {
     throw new Error("Invalid referred by value.");
   }
 
-  return { name, email, phone, topic, message, referredBy };
+  return { name, email, phone, topic, message, taxSituation, referredBy };
 }
 
 module.exports = async function handler(req, res) {
@@ -142,6 +145,13 @@ module.exports = async function handler(req, res) {
       customFields.push({
         id: config.enquiryMessageFieldId,
         field_value: submission.message,
+      });
+    }
+
+    if (submission.taxSituation) {
+      customFields.push({
+        id: config.taxSituationFieldId,
+        field_value: submission.taxSituation,
       });
     }
 
