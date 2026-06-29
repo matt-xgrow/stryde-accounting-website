@@ -838,20 +838,29 @@
         color: rgba(255, 255, 255, 0.78);
       }
 
-      .tax-offer-price {
-        margin-top: 20px;
-        font-family: "Funnel Sans", "Poppins", Arial, sans-serif;
-        font-size: clamp(2.7rem, 6vw, 4.8rem);
-        font-weight: 800;
-        line-height: 0.95;
+      .tax-offer-proof {
+        margin: 22px 0 0;
+        padding: 0;
+        list-style: none;
+        display: grid;
+        gap: 10px;
+        color: rgba(255, 255, 255, 0.88);
+        font-weight: 700;
       }
 
-      .tax-offer-price span {
-        display: block;
-        margin-bottom: 4px;
-        color: var(--green);
-        font-size: 0.26em;
-        text-transform: uppercase;
+      .tax-offer-proof li {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .tax-offer-proof li::before {
+        content: "";
+        width: 9px;
+        height: 9px;
+        flex: 0 0 auto;
+        border-radius: 50%;
+        background: var(--green);
       }
 
       .tax-offer-form {
@@ -864,6 +873,10 @@
 
       .tax-offer-form .button {
         width: 100%;
+      }
+
+      .tax-offer-form textarea {
+        min-height: 88px;
       }
 
       .tax-offer-form .form-status {
@@ -1109,7 +1122,7 @@
             <a href="#contact">Contact</a>
           </div>
           <div class="nav-actions">
-            <a class="button button-outline" href="tel:+61449655904">Call now</a>
+            <a class="button button-outline" href="tel:+61449655904">Call Now</a>
             <a class="button button-primary" href="https://api.leadconnectorhq.com/widget/bookings/strategy-call-stryde" target="_blank" rel="noopener">Book a consultation</a>
           </div>
         </div>
@@ -1128,7 +1141,7 @@
               </p>
               <div class="hero-actions">
                 <a class="button button-primary" href="https://api.leadconnectorhq.com/widget/bookings/strategy-call-stryde" target="_blank" rel="noopener">Book a free consultation</a>
-                <a class="button button-secondary" href="tel:+61449655904">Call +61 449 655 904</a>
+                <a class="button button-secondary" href="tel:+61449655904">Call Now</a>
               </div>
               <ul class="hero-points" aria-label="Stryde Accounting credentials">
                 <li>Registered Tax Agent No. 26363623</li>
@@ -1513,7 +1526,7 @@
     </main>
 
     <div class="floating-cta" aria-label="Quick contact options">
-      <a class="button button-outline" href="tel:+61449655904">Call</a>
+      <a class="button button-outline" href="tel:+61449655904">Call Now</a>
       <a class="button button-primary" href="#enquiry">Send enquiry</a>
     </div>
 
@@ -1531,7 +1544,11 @@
           <p class="eyebrow">EOFY personal tax return offer</p>
           <h2 id="tax-offer-title">Personal tax returns from <span class="dollar">$</span>99.</h2>
           <p>For basic PAYG salary and wage returns. Stryde confirms your final fee before any lodgement work starts.</p>
-          <div class="tax-offer-price"><span>from</span><span class="dollar">$</span>99</div>
+          <ul class="tax-offer-proof" aria-label="Offer details">
+            <li>Registered tax agent support</li>
+            <li>Price confirmed before lodgement</li>
+            <li>Online Australia-wide</li>
+          </ul>
         </div>
         <form class="tax-offer-form contact-form" id="tax-offer-form">
           <h3>Claim your offer</h3>
