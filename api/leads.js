@@ -16,8 +16,6 @@ function getConfig() {
   const required = [
     "GHL_LOCATION_ID",
     "GHL_PRIVATE_INTEGRATION_TOKEN",
-    "GHL_PIPELINE_ID",
-    "GHL_PIPELINE_STAGE_ID",
     "GHL_REFERRED_BY_FIELD_ID",
     "GHL_ENQUIRY_MESSAGE_FIELD_ID",
     "GHL_TAX_SITUATION_FIELD_ID",
@@ -31,8 +29,6 @@ function getConfig() {
   return {
     locationId: process.env.GHL_LOCATION_ID,
     token: process.env.GHL_PRIVATE_INTEGRATION_TOKEN,
-    pipelineId: process.env.GHL_PIPELINE_ID,
-    pipelineStageId: process.env.GHL_PIPELINE_STAGE_ID,
     referredByFieldId: process.env.GHL_REFERRED_BY_FIELD_ID,
     enquiryMessageFieldId: process.env.GHL_ENQUIRY_MESSAGE_FIELD_ID,
     taxSituationFieldId: process.env.GHL_TAX_SITUATION_FIELD_ID,
@@ -189,24 +185,10 @@ module.exports = async function handler(req, res) {
       throw new Error("GoHighLevel did not return a contact id.");
     }
 
-    const opportunityResponse = await ghlRequest("/opportunities/", {
-      method: "POST",
-      body: JSON.stringify({
-        locationId: config.locationId,
-        contactId,
-        pipelineId: config.pipelineId,
-        pipelineStageId: config.pipelineStageId,
-        name: submission.name,
-        status: "open",
-        source: submission.source,
-      }),
-    });
-
     return res.status(201).json({
       ok: true,
       contactId,
-      opportunityId:
-        opportunityResponse.opportunity?.id || opportunityResponse.id || null,
+      opportunityId: null,
     });
   } catch (error) {
     const message = error instanceof Error ? error.message : "Submission failed.";
